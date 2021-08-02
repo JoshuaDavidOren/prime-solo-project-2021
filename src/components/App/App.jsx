@@ -22,6 +22,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import FarmerPage from '../FarmerPage/FarmerPage';
+import SearchListView from '../SearchListView/SearchListView';
+import MapContainer from '../MapContainer/MapContainer';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,13 +60,24 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+            // logged in shows FarmerPage else shows LoginPage
             exact
             path="/farmer"
           >
             <FarmerPage />
           </ProtectedRoute>
+
+          <Route exact
+          path="/searchlist">
+            <SearchListView />
+          </Route>
+
+          <Route exact
+          path="/searchmap">
+            <MapContainer/>
+          </Route>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
