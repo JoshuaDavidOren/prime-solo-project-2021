@@ -1,4 +1,5 @@
 import React from 'react'
+import SearchForm from '../SearchForm/SearchForm';
 // import React, { useEffect, useState } from 'react';
 // import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -44,6 +45,7 @@ function MapContainer(){
 //   }
 
   return (
+      
 //     <section>
 //         <div>
 //         <button onClick={locate()}>ME</button>
@@ -81,7 +83,10 @@ function MapContainer(){
 //            </GoogleMap>
 //          </LoadScript>
 //     </section>
-<h1>I'm a Map</h1>
+<div>
+    <h1>I'm a Map</h1>
+    <SearchForm />
+</div>
   )
   
 }

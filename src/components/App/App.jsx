@@ -24,6 +24,7 @@ import './App.css';
 import FarmerPage from '../FarmerPage/FarmerPage';
 import SearchListView from '../SearchListView/SearchListView';
 import MapContainer from '../MapContainer/MapContainer';
+import AddItemForm from '../AddItemForm/AddItemForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -85,6 +86,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/additem"
+          >
+            <AddItemForm />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

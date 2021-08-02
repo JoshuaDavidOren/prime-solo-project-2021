@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 // import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 
-function SearchForm() {
+function AddItemForm() {
 //   const [address, setAddress] = useState('')
 //   const [city, setCity] = useState('')
 //   const [state, setState] = useState('')
@@ -19,8 +19,8 @@ function SearchForm() {
 //     setZip('');
 //   }
 
-return (
-  <h1>What are You Looking for?</h1>
+return ( <h1>ADD AN ITEM</h1>
+  
 //                 <section>
 //                   <input value={address} type="text" placeholder='street' onChange={(evt) => setAddress(evt.target.value)} required />
 //                   <input value={city} type="text" placeholder='city'  onChange={(evt) => setCity(evt.target.value)} required />
@@ -32,4 +32,4 @@ return (
     )
 }
 
-export default SearchForm;
+export default AddItemForm;
