@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
   let loginLinkData = {
     path: '/login',
@@ -30,6 +31,15 @@ function Nav() {
   <a href="#searchmap">Map</a>
   <a href="#farmer">Farmer</a>
   <a href="#about">About</a>
+  <a
+      // This button shows up in multiple locations and is styled differently
+      // because it's styled differently depending on where it is used, the className
+      // is passed to it from it's parents through React props
+      // className={props.className}
+      onClick={() => dispatch({ type: 'LOGOUT' })}
+    >
+      Log Out
+    </a>
     </div>
   </div>
 </div>
