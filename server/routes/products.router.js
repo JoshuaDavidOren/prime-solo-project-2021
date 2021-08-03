@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/item/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const qText = `
     SELECT * FROM "farmer_products" 
     JOIN "products" on "farmer_products".product_id = "products".id 
@@ -13,7 +13,7 @@ router.get('/item/:id', (req, res) => {
 
   pool.query(qText,[req.params.id])
   .then((response) => {
-      res.send(result.rows);
+      res.send(response.rows);
   })
   .catch(err => {
     console.log('Error GETing farmers Items', err);
@@ -29,7 +29,22 @@ router.get('/itemlist', (req, res) => {
   
     pool.query(qText,[req.user.id])
     .then((response) => {
-        res.send(result.rows);
+        res.send(response.rows);
+    })
+    .catch(err => {
+      console.log('Error GETing farmers Items', err);
+      res.sendStatus(500)
+    })
+  });
+
+  router.get('/listproducts', (req, res) => {
+    const qText = `
+    SELECT * FROM "products" 
+    ;`;
+  
+    pool.query(qText)
+    .then((response) => {
+        res.send(response.rows);
     })
     .catch(err => {
       console.log('Error GETing farmers Items', err);
