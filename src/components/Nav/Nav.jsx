@@ -18,29 +18,44 @@ function Nav() {
   }
 
   return (
-    <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
-      </Link>
-      <div>
-        <Link className="navLink" to={loginLinkData.path}>
-          {loginLinkData.text}
-        </Link>
-
-        {user.id && (
-          <>
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-            <LogOutButton className="navLink" />
-          </>
-        )}
-
-        <Link className="navLink" to="/about">
-          About
-        </Link>
-      </div>
+    <div className="navbar">
+      <div class="dropdown">
+    <button class="dropbtn">Menu
+      <i class="fa fa-caret-down"></i>
+    </button>
+    
+    <div class="dropdown-content">
+    <a href="#/home">Home</a>
+  <a href="#searchlist">List</a>
+  <a href="#searchmap">Map</a>
+  <a href="#farmer">Farmer</a>
+  <a href="#about">About</a>
     </div>
+  </div>
+</div>
+    // <div className="nav">
+    //   <Link to="/home">
+    //     <h2 className="nav-title">Prime Solo Project</h2>
+    //   </Link>
+    //   <div>
+    //     <Link className="navLink" to={loginLinkData.path}>
+    //       {loginLinkData.text}
+    //     </Link>
+
+    //     {user.id && (
+    //       <>
+    //         <Link className="navLink" to="/info">
+    //           Info Page
+    //         </Link>
+    //         <LogOutButton className="navLink" />
+    //       </>
+    //     )}
+
+    //     <Link className="navLink" to="/about">
+    //       About
+    //     </Link>
+    //   </div>
+    // </div>
   );
 }
 
