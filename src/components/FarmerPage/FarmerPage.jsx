@@ -14,8 +14,10 @@ function FarmerPage() {
                 <h3>Farm Name</h3>
                 <h4>contactInfo@gmail.com</h4>
                 <h4>XXX-XXX-7777</h4>
+                <p>discription of farmer with beautiful words and thinsg obut the farm that has been in there family for one million generations thank you farmer and buyres THANK YOU</p>
             </header>
             <section>
+                <h2>Groceries For Sale</h2>
                 <ItemList />
             </section>
 
