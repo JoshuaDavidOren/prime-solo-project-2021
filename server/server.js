@@ -11,7 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const coordinatesRouter = require('./routes/coordinates.router')
 const productsRouter = require('./routes/products.router')
-
+const coordinatesRouter = require('./routes/coordinates.router')
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +27,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/coordinates', coordinatesRouter );
 app.use('/api/items', productsRouter)
+app.use('/api/locations', coordinatesRouter)
 // Serve static files
 app.use(express.static('build'));
 

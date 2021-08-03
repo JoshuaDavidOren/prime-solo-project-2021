@@ -106,7 +106,7 @@ router.put('/item/:id', (req, res) => {
         res.sendStatus(500);
       });
     });
-
+    // deletes item from farmers list
     router.delete('/item/:id', (req, res) => {
         const product = req.params.id
         const qText = `
@@ -123,4 +123,5 @@ router.put('/item/:id', (req, res) => {
             res.sendStatus(500);
           });
         });
+        
 module.exports = router;
