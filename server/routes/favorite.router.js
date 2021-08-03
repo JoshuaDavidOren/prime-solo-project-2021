@@ -6,7 +6,18 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-  // GET route code here
+  const qText =`
+  SELECT FROM "favorite_connections"
+  WHERE "user_id" = $1;
+  `;
+  pool.query(qText,[req.user.id])
+  .then((response) => {
+    res.send(response.rows);
+})
+.catch(err => {
+  console.log('Error GETing Favorites', err);
+  res.sendStatus(500)
+})
 });
 
 /**

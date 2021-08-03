@@ -39,9 +39,8 @@ router.get('/itemlist', (req, res) => {
 // shows farmers all products for easy selction to add to their list
   router.get('/listproducts', (req, res) => {
     const qText = `
-    SELECT * FROM "products" 
-    ;`;
-
+    SELECT * FROM "products"; 
+    `;
     pool.query(qText)
     .then((response) => {
         res.send(response.rows);
@@ -123,5 +122,5 @@ router.put('/item/:id', (req, res) => {
             res.sendStatus(500);
           });
         });
-        
+
 module.exports = router;
