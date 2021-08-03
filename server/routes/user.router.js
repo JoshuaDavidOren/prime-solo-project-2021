@@ -35,6 +35,7 @@ router.post('/register', (req, res, next) => {
       const phoneNumber = req.body.phoneNumber;
       const email = req.body.email;
       const pageName = req.body.pageName;
+      
       const qText = `
       INSERT INTO "user_profile" ("user_id", "first_name", "last_name", "phone_number", "email", "page_title")
       VALUES ( $1, $2, $3, $4, $5, $6)
