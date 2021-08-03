@@ -7,12 +7,18 @@ function FarmerPage() {
   const user = useSelector((store) => store.user);
   return (
       
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <h1>YOUR A FARMER</h1>
-      <p>Your ID is: {user.id}</p>
-      <p>Your user type is: {user.user_type? "true" : "false"}</p>
-    </div>
+    <section>
+        <header>
+            <div className="profile-image"></div>
+        </header>
+
+        <div className="container">
+          <h2>Welcome, {user.username}!</h2>
+          <h1>YOUR A FARMER</h1>
+          <p>Your ID is: {user.id}</p>
+          <p>Your user type is: {user.user_type? "true" : "false"}</p>
+        </div>
+    </section>
   );
 }
 

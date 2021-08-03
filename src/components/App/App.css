@@ -117,3 +117,10 @@ input[type="password"]
 {
     font-size:18px;
 }
+
+.profile-image {
+  height: 100px;
+  width: 100px;
+  background-color: #497442;
+  margin: 10%;
+}
