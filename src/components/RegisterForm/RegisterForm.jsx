@@ -25,51 +25,55 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
-      {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
-          {errors.registrationMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <div></div>
-        <label htmlFor="password">
-        Check for Farmer:
-          <input
-            type="checkbox"
-            name="type"
-            value={!userType}
-            onChange={(event) => setUserType(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
-    </form>
+    <center>
+      <form className="formPanel" onSubmit={registerUser}>
+        <h2>Register User</h2>
+        {errors.registrationMessage && (
+          <h3 className="alert" role="alert">
+            {errors.registrationMessage}
+          </h3>
+        )}
+        <div>
+          <label htmlFor="username">
+            <input
+              className="inputStyle-1"
+              placeholder="username"
+              type="text"
+              name="username"
+              value={username}
+              required
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="password">
+            <input
+            className="inputStyle-1"
+            placeholder="password"
+              type="password"
+              name="password"
+              value={password}
+              required
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </label>
+          <div></div>
+          <label htmlFor="password">
+          Check for Farmer:
+            <input
+              type="checkbox"
+              name="type"
+              value={!userType}
+              onChange={(event) => setUserType(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <input className="btn" type="submit" name="submit" value="Register" />
+        </div>
+      </form>
+    </center>
   );
 }
 
