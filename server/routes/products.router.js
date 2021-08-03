@@ -54,13 +54,32 @@ router.get('/itemlist', (req, res) => {
     })
   });
 
+  router.post('/addproduct', (req, res) => {
+    const product = req.body.productId
+    const price = req.body.price
+    
+    const qText = `
+    INSERT INTO "farmer_products" ("user_id" , "product_id" , "asking_price", "available")
+VALUES ( $1, $2, $3, true)  
+    ;`;
+    pool.query(qText,[req.user.id, product, price])
+    .then(() => {
+        console.log('INSERT to "farmer_products" successful');
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.log('Error POST "farmer_products"', err);
+        res.sendStatus(500);
+      });
+    });
+
 /**
  * POST route template
  */
 router.post('/product', (req, res) => {
 const qText = `
 INSERT INTO "products" ("item")
-VALUE ($1) 
+VALUES ($1) 
 ;`;
 pool.query(qText,[req.body])
 .then(() => {
