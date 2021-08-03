@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 require('dotenv').config();
-
+// takes custom address input from farmers and turns it into coordinates to place a marker on the map for users to see
 router.post('/updatelocation', (req, res) => {
     console.log('what is this',req.body);
     const address = req.body.address;
@@ -35,7 +35,7 @@ router.post('/updatelocation', (req, res) => {
         res.sendStatus(500)
     })
 });
-
+// gets all locations of farmers and markets to populate Map with markers
 router.get('/locations', (req, res) => {
 
     pool.query('SELECT * FROM "vendors";')
