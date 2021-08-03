@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -21,22 +19,22 @@ function Nav() {
   return (
     <div className="navbar">
       <div class="dropdown">
-    <button class="dropbtn">Menu
-      <i class="fa fa-caret-down"></i>
-    </button>
+        <button class="dropbtn">Menu
+          <i class="fa fa-caret-down"></i>
+        </button>
     
-    <div class="dropdown-content">
-      <a href="#/home">Home</a>
-      <a href="#searchlist">List</a>
-      <a href="#searchmap">Map</a>
-      <a href="#farmer">Farmer</a>
-      <a href="#about">About</a>
-      <a href="#/home"
-        onClick={() => dispatch({ type: 'LOGOUT' })}
-        >Log Out</a>
+        <div class="dropdown-content">
+          <a href="#/home">Home</a>
+          <a href="#searchlist">List</a>
+          <a href="#searchmap">Map</a>
+          <a href="#farmer">Farmer</a>
+          <a href="#about">About</a>
+          <a href="#/home"
+            onClick={() => dispatch({ type: 'LOGOUT' })}
+            >Log Out</a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   );
 }
 

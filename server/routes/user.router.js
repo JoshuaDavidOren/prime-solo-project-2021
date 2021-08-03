@@ -17,16 +17,38 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
+
+// second step for creating user profile pay attention when creating forms and sagas
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
   const user_type = req.body.userType
 
-  const queryText = `INSERT INTO "user" (username, password, user_type)
+  const qText = `INSERT INTO "user" (username, password, user_type)
     VALUES ($1, $2, $3) RETURNING id`;
-  pool
-    .query(queryText, [username, password, user_type])
-    .then(() => res.sendStatus(201))
+  pool.query(qText, [username, password, user_type])
+    // .then(() => res.sendStatus(201))
+    .then(response => {
+      const newUserId = response.rows[0].id;
+      const firstName = req.body.firstName;
+      const lastName = req.body.lastName;
+      const phoneNumber = req.body.phoneNumber;
+      const email = req.body.email;
+      const pageName = req.body.pageName;
+      const qText = `
+      INSERT INTO "user_profile" ("user_id", "first_name", "last_name", "phone_number", "email", "page_title")
+      VALUES ( $1, $2, $3, $4, $5, $6)
+      `;
+      pool.query(qText, [newUserId, firstName, lastName, phoneNumber, email, pageName])
+    })
+    .then(() => {
+      console.log('INSERT to "user_profile" successful');
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log('Error POST "user_profile"', err);
+      res.sendStatus(500);
+    })
     .catch((err) => {
       console.log('User registration failed: ', err);
       res.sendStatus(500);
