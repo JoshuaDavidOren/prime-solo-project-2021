@@ -1,4 +1,4 @@
-const userReducer = (state = [], action) => {
+const farmerReducer = (state = [], action) => {
     switch (action.type) {
        
         default:
@@ -6,4 +6,4 @@ const userReducer = (state = [], action) => {
     }
 }
 
-export default userReducer;
+export default farmerReducer;
