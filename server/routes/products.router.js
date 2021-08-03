@@ -2,9 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+// shows user viewing farmer profile the farmers list of products
 router.get('/:id', (req, res) => {
   const qText = `
     SELECT * FROM "farmer_products" 
@@ -21,7 +19,7 @@ router.get('/:id', (req, res) => {
     res.sendStatus(500)
   })
 });
-
+// shows farmers their list of items
 router.get('/itemlist', (req, res) => {
     const qText = `
     SELECT * FROM "farmer_products" 
@@ -38,7 +36,7 @@ router.get('/itemlist', (req, res) => {
       res.sendStatus(500)
     })
   });
-
+// shows farmers all products for easy selction to add to their list
   router.get('/listproducts', (req, res) => {
     const qText = `
     SELECT * FROM "products" 
@@ -53,11 +51,11 @@ router.get('/itemlist', (req, res) => {
       res.sendStatus(500)
     })
   });
-
+// adds product to farmers personal list
   router.post('/addproduct', (req, res) => {
     const product = req.body.productId
     const price = req.body.price
-    
+
     const qText = `
     INSERT INTO "farmer_products" ("user_id" , "product_id" , "asking_price", "available")
 VALUES ( $1, $2, $3, true)  
@@ -73,9 +71,7 @@ VALUES ( $1, $2, $3, true)
       });
     });
 
-/**
- * POST route template
- */
+// create new product for products table
 router.post('/product', (req, res) => {
 const qText = `
 INSERT INTO "products" ("item")
@@ -92,4 +88,39 @@ pool.query(qText,[req.body])
   });
 });
 
+//updates farmers item from avil-!avil
+router.put('/item/:id', (req, res) => {
+    const product = req.params.id
+    const qText = `
+    UPDATE "farmer_products" 
+    SET "available" = NOT available
+    WHERE "id" = $1 
+    ;`;
+    pool.query(qText,[product])
+    .then(() => {
+        console.log('UPDATE to "farmer_products" successful');
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.log('Error UPDATE "farmer_products"', err);
+        res.sendStatus(500);
+      });
+    });
+
+    router.delete('/item/:id', (req, res) => {
+        const product = req.params.id
+        const qText = `
+        DELETE FROM "farmer_products" 
+        WHERE "id" = $1 
+        ;`;
+        pool.query(qText,[product])
+        .then(() => {
+            console.log('DELETE to "farmer_products" successful');
+            res.sendStatus(201);
+          })
+          .catch((err) => {
+            console.log('Error DELETE "farmer_products"', err);
+            res.sendStatus(500);
+          });
+        });
 module.exports = router;
