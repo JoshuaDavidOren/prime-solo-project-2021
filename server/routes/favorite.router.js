@@ -16,12 +16,12 @@ router.post('/', (req, res) => {
   // POST route code here
 });
 
-router.post('/product', (req, res) => {
+router.post('/farmer', (req, res) => {
     const qText = `
-    INSERT INTO "favorites" ("user_type_id", "farmer_type_id")
+    INSERT INTO "favorite_connections" ("user_type_id", "farmer_type_id")
     VALUES ($1, $2) 
     ;`;
-    pool.query(qText,[req.user.id, req.bod.idy])
+    pool.query(qText,[req.user.id, req.body.id])
     .then(() => {
         console.log('INSERT to "favorites" successful');
         res.sendStatus(201);
@@ -32,12 +32,12 @@ router.post('/product', (req, res) => {
       });
     });
 
-    router.post('/product', (req, res) => {
+    router.post('/market', (req, res) => {
         const qText = `
-        INSERT INTO "favorites" ("user_type_id", "farmer_market_id")
+        INSERT INTO "favorite_connections" ("user_type_id", "farmer_market_id")
         VALUES ($1, $2) 
         ;`;
-        pool.query(qText,[req.user.id, req.bod.id])
+        pool.query(qText,[req.user.id, req.body.id])
         .then(() => {
             console.log('INSERT to "favorites" successful');
             res.sendStatus(201);
@@ -47,5 +47,40 @@ router.post('/product', (req, res) => {
             res.sendStatus(500);
           });
         });
+
+        router.delete('/farmer/:id', (req, res) => {
+            const farmerId = req.params.id
+            const qText = `
+            DELETE FROM "favorite_connections" 
+            WHERE "user_type_id" = $1 AND "favorite_connections".farmer_type_id = $2
+            ;`;
+            pool.query(qText,[req.user.id, farmerId])
+            .then(() => {
+                console.log('DELETE to "favorite_connections" successful');
+                res.sendStatus(201);
+              })
+              .catch((err) => {
+                console.log('Error DELETE "favorite_connections"', err);
+                res.sendStatus(500);
+              });
+            }); 
+            
+        router.delete('/farmer/:id', (req, res) => {
+            const marketId = req.params.id
+            const qText = `
+            DELETE FROM "favorite_connections" 
+            WHERE "user_type_id" = $1 AND "favorite_connections".farmers_markets_id = $2;
+            `;
+            pool.query(qText,[req.user.id, marketId])
+            .then(() => {
+                console.log('DELETE to "favorite_connections" successful');
+                res.sendStatus(201);
+              })
+              .catch((err) => {
+                console.log('Error DELETE "favorite_connections"', err);
+                res.sendStatus(500);
+              });
+            });
+                      
 
 module.exports = router;
