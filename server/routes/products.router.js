@@ -3,11 +3,11 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // shows user viewing farmer profile the farmers list of products
-router.get('/:id', (req, res) => {
+router.get('/item/:id', (req, res) => {
   const qText = `
     SELECT * FROM "farmer_products" 
     JOIN "products" on "farmer_products".product_id = "products".id 
-    WHERE "user_id = $1
+    WHERE "user_id" = $1
     ;`;
 
   pool.query(qText,[req.params.id])
@@ -15,16 +15,18 @@ router.get('/:id', (req, res) => {
       res.send(response.rows);
   })
   .catch(err => {
-    console.log('Error GETing farmers Items', err);
+    console.log('Error GETing view users', err);
     res.sendStatus(500)
   })
 });
 // shows farmers their list of items
 router.get('/itemlist', (req, res) => {
-    const qText = `
+  console.log('ok ok ok',req.user.id);
+
+  const qText = `
     SELECT * FROM "farmer_products" 
     JOIN "products" on "farmer_products".product_id = "products".id 
-    WHERE "user_id = $1
+    WHERE "user_id" = $1
     ;`;
   
     pool.query(qText,[req.user.id])
@@ -32,6 +34,7 @@ router.get('/itemlist', (req, res) => {
         res.send(response.rows);
     })
     .catch(err => {
+      console.log('ok ok ok',req.user.id);
       console.log('Error GETing farmers Items', err);
       res.sendStatus(500)
     })

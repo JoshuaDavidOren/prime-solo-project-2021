@@ -1,12 +1,11 @@
 
-
-const profileReducer = (state = [], action) => {
+const productReducer = (state = [], action) => {
     switch (action.type) {
-       case 'SET_PROFILE':
+       case 'SET_PRODUCTS':
            return action.payload
         default:
             return state;
     }
 }
 
-export default profileReducer;
+export default productReducer;

@@ -6,7 +6,15 @@ function FarmerPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const profile = useSelector((store => store.profileReducer))
   const user = useSelector((store) => store.user);
+  const products = useSelector((store) => store.productReducer)
   const info = profile[0];
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+
+    dispatch({type: 'GET_PRODUCT_DATA'})
+  }, [])
+
 console.log(user);
   return (
       
@@ -21,7 +29,7 @@ console.log(user);
             {user.user_type === true ?
             <section>
                 <h2>Groceries For Sale</h2>
-                {profile.map((item) => {
+                {products.map((item) => {
                     return (<ItemList key={item.id} url={item.id} title={item.item} price={item.asking_price} />);
                 })}
             </section> 
