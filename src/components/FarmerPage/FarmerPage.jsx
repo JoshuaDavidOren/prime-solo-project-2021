@@ -7,7 +7,7 @@ function FarmerPage() {
   const profile = useSelector((store => store.profileReducer))
   const user = useSelector((store) => store.user);
   const info = profile[0];
-
+console.log(user);
   return (
       
     <section>
@@ -18,12 +18,14 @@ function FarmerPage() {
                 <h4>{info.phone_number}</h4>
                 <p>discription of farmer with beautiful words and thinsg obut the farm that has been in there family for one million generations thank you farmer and buyres THANK YOU</p>
             </header>
+            {user.user_type === true ?
             <section>
                 <h2>Groceries For Sale</h2>
                 {profile.map((item) => {
                     return (<ItemList key={item.id} url={item.id} title={item.item} price={item.asking_price} />);
                 })}
-            </section>
+            </section> 
+            : <div></div>}
 
         <div className="container">
           <h2>Welcome, {user.username}!</h2>
