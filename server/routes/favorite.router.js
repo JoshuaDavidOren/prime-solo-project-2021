@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   const qText = `
-  SELECT FROM "favorite_connections"
-  WHERE "user_id" = $1;
+  SELECT * FROM "favorite_connections"
+  WHERE "user_type_id" = $1;
   `;
   pool
     .query(qText, [req.user.id])
@@ -70,7 +70,7 @@ router.delete("/farmer/:id", (req, res) => {
     });
 });
 
-router.delete("/farmer/:id", (req, res) => {
+router.delete("/market/:id", (req, res) => {
   const marketId = req.params.id;
   const qText = `
             DELETE FROM "favorite_connections" 

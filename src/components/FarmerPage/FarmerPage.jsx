@@ -11,8 +11,8 @@ function FarmerPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-
     dispatch({type: 'GET_PRODUCT_DATA'})
+    dispatch({type: 'GET_FAVORITE_DATA'}) 
   }, [])
 
 console.log(user);

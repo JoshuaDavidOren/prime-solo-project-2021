@@ -21,7 +21,6 @@ router.get('/item/:id', (req, res) => {
 });
 // shows farmers their list of items
 router.get('/itemlist', (req, res) => {
-  console.log('ok ok ok',req.user.id);
 
   const qText = `
     SELECT * FROM "farmer_products" 
@@ -34,7 +33,6 @@ router.get('/itemlist', (req, res) => {
         res.send(response.rows);
     })
     .catch(err => {
-      console.log('ok ok ok',req.user.id);
       console.log('Error GETing farmers Items', err);
       res.sendStatus(500)
     })
