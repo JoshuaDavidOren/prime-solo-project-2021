@@ -64,6 +64,16 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });
 
+router.get('/profile', (req, res) => {
+  const qText = (req.user.user_type === true ? 
+    `SELECT * FROM "user_profile" 
+    JOIN "farmer_products" ON  "user_profile".user_id = "farmer_products".user_id
+    JOIN "products" ON "farmer_products".product_id = "products".id
+    WHERE "farmer_products".user_id = $1;`
+    :
+    ``)
+})
+
 // clear all server session information about this user
 router.post('/logout', (req, res) => {
   // Use passport's built-in method to log out the user
