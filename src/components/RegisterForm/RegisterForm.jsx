@@ -25,10 +25,15 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
-        userType: userType
+        userType: userType,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        email: email,
+        farmName: farmName
       },
     });
-  }; // end registerUser
+  };
 
   return (
     <center>
