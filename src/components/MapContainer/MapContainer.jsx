@@ -54,7 +54,7 @@ const [ currentPosition, setCurrentPosition ] = useState({});
         <button onClick={locate()}>ME</button>
         </div>
          <LoadScript
-           googleMapsApiKey={`${process.env.react_app_google_api}`}>
+           googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_API}`}>
             <GoogleMap
             mapContainerStyle={mapStyles}
             zoom={13}

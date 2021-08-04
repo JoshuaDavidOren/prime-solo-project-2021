@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: t
 
 function ItemList(item){
     const classes = useStyles();
-   
+    const image = 'https://image.shutterstock.com/image-vector/cute-strawberry-vector-graphic-icon-260nw-1014794461.jpg'
             return(  <>
-                <Grid item style={{height: "520px" }} id={item.id}> 
+                <Grid item style={{height: "200px", width: '350px' }} id={item.id}> 
                 <Card>
                   <Paper className={classes.paper}>
                   <CardMedia
@@ -22,17 +22,25 @@ function ItemList(item){
                   style = {{ height: '100px'}}
                   component="img"
                   alt={item.title}
-                  src={item.url}
-                  title={item.item}
+                //   src={image}
+                  title={item.item, 'price:', item.asking_price}
                 />
                     <br />
                     <Button
-                      style={{ width: "180px", height: "42px" }}
+                      style={{ width: "40px", height: "24px" }}
                       variant="contained"
                       color="primary"
                       onClick={() => postToFavorites(item)}
                     >
-                      Delete Item
+                      Remove
+                    </Button>
+                    <Button
+                      style={{ width: "40px", height: "24px" }}
+                      variant="contained"
+                      color="primary"
+                      onClick={() => postToFavorites(item)}
+                    >
+                      available
                     </Button>
                     <CardActions>
                     

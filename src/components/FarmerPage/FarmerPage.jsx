@@ -7,24 +7,22 @@ function FarmerPage() {
   const profile = useSelector((store => store.profileReducer))
   const user = useSelector((store) => store.user);
   const info = profile[0];
-  console.log('this should be profile data'); 
 
   return (
       
     <section>
-        {/* <header>
+        <header>
             <div className="profile-image"></div>
                 <h3>{info.page_title}</h3>
                 <h4>{info.email}</h4>
                 <h4>{info.phone_number}</h4>
                 <p>discription of farmer with beautiful words and thinsg obut the farm that has been in there family for one million generations thank you farmer and buyres THANK YOU</p>
-            </header> */}
+            </header>
             <section>
                 <h2>Groceries For Sale</h2>
                 {profile.map((item) => {
-                    return (<ItemList key={item.id} url={item.id} title={item.item} />);
+                    return (<ItemList key={item.id} url={item.id} title={item.item} price={item.asking_price} />);
                 })}
-                <ItemList key={profile[0].id} url={profile[0].id} title={profile[0].item} />
             </section>
 
         <div className="container">
