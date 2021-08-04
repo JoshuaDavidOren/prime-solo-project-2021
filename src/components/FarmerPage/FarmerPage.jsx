@@ -21,6 +21,9 @@ function FarmerPage() {
             </header> */}
             <section>
                 <h2>Groceries For Sale</h2>
+                {profile.map((item) => {
+                    return (<ItemList key={item.id} url={item.id} title={item.item} />);
+                })}
                 <ItemList key={profile[0].id} url={profile[0].id} title={profile[0].item} />
             </section>
 
