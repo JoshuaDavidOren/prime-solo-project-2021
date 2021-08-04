@@ -71,7 +71,18 @@ router.get('/profile', (req, res) => {
     JOIN "products" ON "farmer_products".product_id = "products".id
     WHERE "farmer_products".user_id = $1;`
     :
-    ``)
+    `SELECT * FROM "favorite_connections"
+    JOIN "user_profile" ON "user_profile".user_id = "favorite_connections".farmer_type_id  
+    WHERE "favorite_connections".user_type_id = $1;`)
+
+    pool.query(qText, [req.user.id])
+    .then((response) => {
+      res.send(response.rows);
+  })
+  .catch(err => {
+    console.log('Error GETing user profile', err);
+    res.sendStatus(500)
+  })
 })
 
 // clear all server session information about this user
