@@ -65,6 +65,7 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
+  console.log("in profile router");
   const qText = (req.user.user_type === true ? 
     `SELECT * FROM "user_profile" 
     JOIN "farmer_products" ON  "user_profile".user_id = "farmer_products".user_id
@@ -73,10 +74,11 @@ router.get('/profile', (req, res) => {
     :
     `SELECT * FROM "favorite_connections"
     JOIN "user_profile" ON "user_profile".user_id = "favorite_connections".farmer_type_id  
-    WHERE "favorite_connections".user_type_id = $1;`)
+    WHERE "favorite_connections".user_type_id = $1;`);
 
     pool.query(qText, [req.user.id])
     .then((response) => {
+      console.log('what is this',response.rows);
       res.send(response.rows);
   })
   .catch(err => {
