@@ -6,12 +6,15 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 
+
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
 function ItemList(item){
     const classes = useStyles();
     const image = 'https://image.shutterstock.com/image-vector/cute-strawberry-vector-graphic-icon-260nw-1014794461.jpg'
     const dispatch = useDispatch();
+
+
 
     const deleteFromList = (product_id) => {
         dispatch({type: "DELETE_FROM_LIST", payload: product_id })
@@ -72,7 +75,8 @@ function ItemList(item){
                     </table>
                  
                   </Paper>
-                
+                  
+
                 </Grid>
                 </>)
 }

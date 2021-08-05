@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import ItemList from './ItemList';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 function FarmerPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -11,6 +13,10 @@ function FarmerPage() {
   const favFarmer = useSelector((store) => store.favoriteFarmerReducer)
   const info = profile[0];
   const dispatch = useDispatch();
+
+  const array = [{name: "apples"}, {name:"bananas"}, {name: "peaches"}, {name: "eggplants"}];
+  const [inputValue, setInputValue] = React.useState('');
+
 
   useEffect(() => {
     dispatch({type: 'GET_PRODUCT_DATA'})
@@ -46,8 +52,31 @@ console.log(user);
                 return (<div>{item.name}</div>);
             })}
         </section> }
+        {/* <Autocomplete
+                    id="combo-box-demo"
+                    options={array}
+                    getOptionLabel={(option) => option.name }
+                    style={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} label="Add Item" variant="outlined" />}
+                    /> */}
 
-        <button><h2>ADD ITEM dropdown</h2></button>
+<div>
+
+      <div>{`inputValue: '${inputValue}'`}</div>
+      <br />
+      <Autocomplete
+       
+        inputValue={inputValue}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
+        id="controllable-states-demo"
+        options={array}
+        getOptionLabel={(option) => option.name }
+        style={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Controllable" variant="outlined" />}
+      />
+    </div>
 
         <div className="container">
           <h2>Welcome, {user.username}!</h2>
