@@ -33,7 +33,7 @@ console.log(user);
             <section>
                 <h2>Groceries For Sale</h2>
                 {products.map((item) => {
-                    return (<ItemList id={item.id} available={item.available} title={item.item} price={item.asking_price} />);
+                    return (<ItemList id={item.id} available={item.available} title={item.item} price={item.asking_price} product_id={item.product_id} />);
                 })}
             </section> 
             : 

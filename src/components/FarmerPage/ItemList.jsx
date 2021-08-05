@@ -1,12 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActions from '@material-ui/core/CardActions';
+
 
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
@@ -15,13 +13,11 @@ function ItemList(item){
     const image = 'https://image.shutterstock.com/image-vector/cute-strawberry-vector-graphic-icon-260nw-1014794461.jpg'
     const dispatch = useDispatch();
 
-    const deleteFromList = (id) => {
-        console.log('d',id);
-        dispatch({type: "DELETE_FROM_LIST", payload: id })
+    const deleteFromList = (product_id) => {
+        dispatch({type: "DELETE_FROM_LIST", payload: product_id })
     } 
-    const updateAvailable = (id) => {
-        console.log('up',id);
-        dispatch({type: "UPDATE_AVAILABLE", payload: id })
+    const updateAvailable = (product_id) => {
+        dispatch({type: "UPDATE_AVAILABLE", payload: product_id })
     } 
 
 
@@ -45,7 +41,7 @@ function ItemList(item){
                                       style={{ height: "24px" }}
                                       variant="contained"
                                       color="primary"
-                                      onClick={() => updateAvailable(item.id)}
+                                      onClick={() => updateAvailable(item.product_id)}
                                     >
                                       Available
                                     </Button>
@@ -54,7 +50,7 @@ function ItemList(item){
                                       style={{ height: "24px" }}
                                       variant="contained"
                                       color="default"
-                                      onClick={() => updateAvailable(item.id)}
+                                      onClick={() => updateAvailable(item.product_id)}
                                     >
                                       Not Available
                                     </Button>
@@ -66,7 +62,7 @@ function ItemList(item){
                                       style={{  height: "24px" }}
                                       variant="contained"
                                       color="secondary"
-                                      onClick={() => deleteFromList(item.id)}
+                                      onClick={() => deleteFromList(item.product_id)}
                                     >
                                       Remove
                                     </Button>

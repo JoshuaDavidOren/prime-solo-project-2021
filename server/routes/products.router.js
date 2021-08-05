@@ -94,9 +94,9 @@ router.put('/item/:id', (req, res) => {
     const qText = `
     UPDATE "farmer_products" 
     SET "available" = NOT available
-    WHERE "id" = $1 
+    WHERE "product_id" = $1 AND "user_id" = $2  
     ;`;
-    pool.query(qText,[product])
+    pool.query(qText,[product, req.user.id])
     .then(() => {
         console.log('UPDATE to "farmer_products" successful');
         res.sendStatus(201);
@@ -107,13 +107,13 @@ router.put('/item/:id', (req, res) => {
       });
     });
     // deletes item from farmers list
-    router.delete('/item/:id', (req, res) => {
+    router.delete('/delete/:id', (req, res) => {
         const product = req.params.id
         const qText = `
         DELETE FROM "farmer_products" 
-        WHERE "id" = $1 
+        WHERE "product_id" = $1 AND "user_id" = $2 
         ;`;
-        pool.query(qText,[product])
+        pool.query(qText,[product, req.user.id])
         .then(() => {
             console.log('DELETE to "farmer_products" successful');
             res.sendStatus(201);
