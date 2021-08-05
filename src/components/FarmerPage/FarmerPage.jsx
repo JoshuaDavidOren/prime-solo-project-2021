@@ -37,6 +37,9 @@ function FarmerPage() {
       type: "ADD_ITEM_FARMER_LIST",
       payload: { nameProduct: nameProduct, price: price, quantity: quantity },
     });
+    setNameProduct('');
+    setPrice('');
+    setQuantity('');
   };
 
   console.log(user);
@@ -64,6 +67,7 @@ function FarmerPage() {
                 title={item.item}
                 price={item.asking_price}
                 product_id={item.product_id}
+                quantity={item.quantity}
               />
             );
           })}
@@ -79,13 +83,6 @@ function FarmerPage() {
           })}
         </section>
       )}
-      {/* <Autocomplete
-                    id="combo-box-demo"
-                    options={array}
-                    getOptionLabel={(option) => option.name }
-                    style={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="Add Item" variant="outlined" />}
-                    /> */}
 
       <div>
         {user.user_type === true ? (

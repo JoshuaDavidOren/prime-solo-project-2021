@@ -45,7 +45,7 @@ function ItemList(item){
 
 
             return(  <>
-                <Grid item style={{height: "200px", width: '350px' }} id={item.id}> 
+                <Grid item style={{height: "320px", width: '350px' }} id={item.id}> 
                
                   <Paper className={classes.paper}>
                     
@@ -53,9 +53,14 @@ function ItemList(item){
                     <br />
                     <table>
                         <tbody>
-                            <tr><td><img src={image} width='100px' hight='100px'/></td>
-                            <td><h3>{item.title}:</h3></td>
-                            <td><h3>{item.price}</h3></td>
+                            <tr><td><img src={image} width='150px' hight='100px'/></td>
+                            <td><h4>{item.title}</h4></td>
+                            
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>{item.price}''
+                            {item.quantity}</h4></td>
                             </tr>
                             <tr>
                                 <td>
@@ -80,6 +85,7 @@ function ItemList(item){
                                     }
                                 </td>
                                 <div></div>
+                                <td></td>
                                 <td>
                                 <Button
                                       style={{  height: "24px" }}
