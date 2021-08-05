@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import ItemList from './ItemList';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Button from "@material-ui/core/Button";
 
 function FarmerPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -15,14 +16,22 @@ function FarmerPage() {
   const dispatch = useDispatch();
 
   const array = [{name: "apples"}, {name:"bananas"}, {name: "peaches"}, {name: "eggplants"}];
-  const [inputValue, setInputValue] = React.useState('');
-
+  const [nameProduct, setNameProduct] = React.useState('');
+  const [price , setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
 
   useEffect(() => {
     dispatch({type: 'GET_PRODUCT_DATA'})
     dispatch({type: 'GET_FAVORITE_FARMER_DATA'}) 
     dispatch({type: 'GET_FAVORITE_MARKET_DATA'}) 
   }, [])
+
+  const addItem = () => {
+    event.preventDefault();
+    dispatch({ type: 'ADD_ITEM_FARMER_LIST', payload:{ nameProduct: nameProduct, price: price, quantity: quantity} })
+  }
+
+    
 
 console.log(user);
   return (
@@ -61,21 +70,34 @@ console.log(user);
                     /> */}
 
 <div>
-
-      <div>{`inputValue: '${inputValue}'`}</div>
+          <h3>Add Item</h3>
+      <div>{`inputValue: '${nameProduct}'`}</div>
       <br />
-      <Autocomplete
-       
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        id="controllable-states-demo"
-        options={array}
-        getOptionLabel={(option) => option.name }
-        style={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Controllable" variant="outlined" />}
-      />
+      <form action="submit">
+        <Autocomplete
+        
+          inputValue={nameProduct}
+          onInputChange={(event, newInputValue) => {
+            setNameProduct(newInputValue);
+          }}
+          id="controllable-states-demo"
+          options={array}
+          getOptionLabel={(option) => option.name }
+          style={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Item Name" variant="outlined" />}
+        />
+         <TextField id="outlined-basic1" value={price} label="Set Price" variant="outlined" onChange={(evt) => setPrice(evt.target.value)} />
+         <TextField id="outlined-basic" value={quantity} label="Quantity" variant="outlined" onChange={(evt) => setQuantity(evt.target.value)} />
+         <Button
+            type='submit'
+            style={{ height: "24px" }}
+            variant="contained"
+            color="primary"
+            onClick={() => addItem()}
+          >
+            Submit
+          </Button>
+</form>
     </div>
 
         <div className="container">
