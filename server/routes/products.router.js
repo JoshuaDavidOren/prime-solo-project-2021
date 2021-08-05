@@ -27,7 +27,7 @@ router.get('/itemlist', (req, res) => {
     JOIN "products" on "farmer_products".product_id = "products".id 
     WHERE "user_id" = $1
     ;`;
-  
+    console.log('user data', req.user.id);
     pool.query(qText,[req.user.id])
     .then((response) => {
         res.send(response.rows);

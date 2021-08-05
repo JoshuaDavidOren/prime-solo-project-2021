@@ -27,7 +27,7 @@ function Nav() {
           <a href="#/home">Home</a>
           <a href="#searchlist">List</a>
           <a href="#searchmap">Map</a>
-          <a href="#farmer">Farmer</a>
+          <a href="#Profile">Profile</a>
           <a href="#about">About</a>
           <a href="#/home"
             onClick={() => dispatch({ type: 'LOGOUT' })}

@@ -7,12 +7,15 @@ function FarmerPage() {
   const profile = useSelector((store => store.profileReducer))
   const user = useSelector((store) => store.user);
   const products = useSelector((store) => store.productReducer)
+  const favMarket = useSelector((store) => store.favoriteMarketReducer)
+  const favFarmer = useSelector((store) => store.favoriteFarmerReducer)
   const info = profile[0];
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({type: 'GET_PRODUCT_DATA'})
-    dispatch({type: 'GET_FAVORITE_DATA'}) 
+    dispatch({type: 'GET_FAVORITE_FARMER_DATA'}) 
+    dispatch({type: 'GET_FAVORITE_MARKET_DATA'}) 
   }, [])
 
 console.log(user);
@@ -30,10 +33,19 @@ console.log(user);
             <section>
                 <h2>Groceries For Sale</h2>
                 {products.map((item) => {
-                    return (<ItemList key={item.id} url={item.id} title={item.item} price={item.asking_price} />);
+                    return (<ItemList id={item.id} available={item.available} title={item.item} price={item.asking_price} />);
                 })}
             </section> 
-            : <div></div>}
+            : 
+            <section>
+            <h2>Favorites</h2>
+            {favFarmer.map((item) => {
+                return (<div>{item.first_name}</div>);
+            })}
+             {favMarket.map((item) => {
+                return (<div>{item.name}</div>);
+            })}
+        </section> }
 
         <div className="container">
           <h2>Welcome, {user.username}!</h2>

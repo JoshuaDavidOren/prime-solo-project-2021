@@ -5,7 +5,8 @@ import locationReducer from './location.reducer';
 import farmerReducer from './farmer.reducer';
 import profileReducer from './profile.reducer';
 import productReducer from './product.reducer';
-import favoriteReducer from './favorite.reducer';
+import favoriteFarmerReducer from './favoritefarmer.reducer';
+import favoriteMarketReducer from './favoritemarket.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   locationReducer,
   profileReducer,
   productReducer,
-  favoriteReducer
+  favoriteFarmerReducer,
+  favoriteMarketReducer
 });
 
 export default rootReducer;
