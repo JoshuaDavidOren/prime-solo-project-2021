@@ -84,7 +84,6 @@ function ItemList(item){
                                     </Button>
                                     }
                                 </td>
-                                <div></div>
                                 <td></td>
                                 <td>
                                 <Button

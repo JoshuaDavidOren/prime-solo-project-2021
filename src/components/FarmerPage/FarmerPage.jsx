@@ -10,6 +10,7 @@ function FarmerPage() {
   const profile = useSelector((store) => store.profileReducer);
   const user = useSelector((store) => store.user);
   const products = useSelector((store) => store.productReducer);
+  const allProducts = useSelector((store) => store.allProductsReducer)
   const favMarket = useSelector((store) => store.favoriteMarketReducer);
   const favFarmer = useSelector((store) => store.favoriteFarmerReducer);
   const info = profile[0];
@@ -24,8 +25,10 @@ function FarmerPage() {
   const [nameProduct, setNameProduct] = React.useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [ newProduct, setNewProduct] = useState('');
 
   useEffect(() => {
+    dispatch({ type: "GET_ALL_PRODUCTS" });
     dispatch({ type: "GET_PRODUCT_DATA" });
     dispatch({ type: "GET_FAVORITE_FARMER_DATA" });
     dispatch({ type: "GET_FAVORITE_MARKET_DATA" });
@@ -41,6 +44,15 @@ function FarmerPage() {
     setPrice('');
     setQuantity('');
   };
+
+  const addNewProduct = () => {
+    event.preventDefault();
+    dispatch({
+      type: "ADD_NEW_PRODUCT",
+      payload: newProduct,
+    });
+    setNewProduct('');
+  } 
 
   console.log(user);
   return (
@@ -85,7 +97,7 @@ function FarmerPage() {
       )}
 
       <div>
-        {user.user_type === true ? (
+        {user.user_type === true ? 
           <section>
             <h3>Add Item</h3>
             <br />
@@ -103,6 +115,7 @@ function FarmerPage() {
                   <TextField {...params} label="Item Name" variant="outlined" />
                 )}
               />
+              <br/>
               <TextField
                 id="outlined-basic1"
                 value={price}
@@ -110,6 +123,7 @@ function FarmerPage() {
                 variant="outlined"
                 onChange={(evt) => setPrice(evt.target.value)}
               />
+              <br/>
               <TextField
                 id="outlined-basic"
                 value={quantity}
@@ -117,9 +131,10 @@ function FarmerPage() {
                 variant="outlined"
                 onChange={(evt) => setQuantity(evt.target.value)}
               />
+              <br/>
               <Button
                 type="submit"
-                style={{ height: "24px" }}
+                style={{ height: "40px" }}
                 variant="contained"
                 color="primary"
                 onClick={() => addItem()}
@@ -127,10 +142,29 @@ function FarmerPage() {
                 Submit
               </Button>
             </form>
+
+            <h4>Can't find the product you would like to add?</h4>
+            <h3>Add it Here</h3>
+            <TextField
+                id="outlined-basic"
+                value={newProduct}
+                label="New Item"
+                variant="outlined"
+                onChange={(evt) => setNewProduct(evt.target.value)}
+              />
+               <Button
+                type="submit"
+                style={{ height: "40px" }}
+                variant="contained"
+                color="primary"
+                onClick={() => addNewProduct()}
+              >
+                ADD
+              </Button>
           </section>
-        ) : (
+         : 
           <div></div>
-        )}
+        }
       </div>
     </section>
   );

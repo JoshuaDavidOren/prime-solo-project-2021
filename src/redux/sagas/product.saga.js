@@ -41,11 +41,22 @@ function* addProductList(action){
         }
 }
 
+function* getAllProducts(){
+    try{
+    const response = yield axios.get('/api/items/listproducts');
+    yield put({type: "SET_ALL_PRODUCTS", payload: response.data});
+    } 
+    catch(err) {
+        console.log('Error GETing profile', err);
+    }
+}
+
 function* productSaga(){
     yield takeEvery('GET_PRODUCT_DATA', fetchProduct);
     yield takeEvery("DELETE_FROM_LIST", deleteProduct);
     yield takeEvery("UPDATE_AVAILABLE", updateProduct);
     yield takeEvery("ADD_ITEM_FARMER_LIST", addProductList);
+    yield takeEvery("GET_ALL_PRODUCTS", getAllProducts);
 }
 
 export default productSaga;
