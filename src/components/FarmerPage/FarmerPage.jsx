@@ -49,7 +49,7 @@ function FarmerPage() {
     event.preventDefault();
     dispatch({
       type: "ADD_NEW_PRODUCT",
-      payload: newProduct,
+      payload: {newProduct: newProduct}
     });
     setNewProduct('');
   } 

@@ -51,12 +51,23 @@ function* getAllProducts(){
     }
 }
 
+function* addProductToProducts(action){
+    try{
+        yield axios.post( '/api/items/product', action.payload);
+        yield put({type: 'GET_PRODUCT_DATA'});
+    } 
+    catch(error) {
+        console.log('Error POSTing to database', error);
+    }
+}
+
 function* productSaga(){
     yield takeEvery('GET_PRODUCT_DATA', fetchProduct);
     yield takeEvery("DELETE_FROM_LIST", deleteProduct);
     yield takeEvery("UPDATE_AVAILABLE", updateProduct);
     yield takeEvery("ADD_ITEM_FARMER_LIST", addProductList);
     yield takeEvery("GET_ALL_PRODUCTS", getAllProducts);
+    yield takeEvery("ADD_NEW_PRODUCT", addProductToProducts);
 }
 
 export default productSaga;

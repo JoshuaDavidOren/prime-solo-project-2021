@@ -78,7 +78,8 @@ const qText = `
 INSERT INTO "products" ("item")
 VALUES ($1) 
 ;`;
-pool.query(qText,[req.body])
+console.log(req.body);
+pool.query(qText,[req.body.newProduct])
 .then(() => {
     console.log('INSERT to "products" successful');
     res.sendStatus(201);

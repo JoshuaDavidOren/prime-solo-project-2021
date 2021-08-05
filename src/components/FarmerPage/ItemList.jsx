@@ -54,13 +54,12 @@ function ItemList(item){
                     <table>
                         <tbody>
                             <tr><td><img src={image} width='150px' hight='100px'/></td>
-                            <td><h4>{item.title}</h4></td>
-                            
+                            <td><h4>{item.title}</h4>
+                                    <h4>{item.price}</h4><p></p><h4>
+                            {item.quantity}</h4></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <h4>{item.price}''
-                            {item.quantity}</h4></td>
+                               
                             </tr>
                             <tr>
                                 <td>
