@@ -2,7 +2,6 @@ import SearchForm from '../SearchForm/SearchForm';
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 require('dotenv').config();
 
 function MapContainer(){
@@ -10,7 +9,6 @@ const [ selected, setSelected ] = useState({});
 const [ currentPosition, setCurrentPosition ] = useState({});
 const dispatch = useDispatch();
 const mapMarkers = useSelector(store => store.mapLocations);
-const history = useHistory();
 
   useEffect(() => {
     dispatch({type: 'whispering!screams!case'})
@@ -52,8 +50,6 @@ const history = useHistory();
       
     <section>
         <div>
-    <h1>I'm a Map</h1>
-    <SearchForm />
 </div>
         <div>
         <button onClick={locate()}>ME</button>
