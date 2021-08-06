@@ -6,7 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -27,6 +27,7 @@ import MapContainer from '../MapContainer/MapContainer';
 import AddItemForm from '../AddItemForm/AddItemForm';
 
 function App() {
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -105,7 +106,7 @@ function App() {
             // - else shows LoginPage at /login
             exact
             path="/login"
-            authRedirect="/user"
+            authRedirect={`/user/${user.id}`}
           >
             <LoginPage />
           </ProtectedRoute>
@@ -116,7 +117,7 @@ function App() {
             // - else shows RegisterPage at "/registration"
             exact
             path="/registration"
-            authRedirect="/user"
+            authRedirect={`/user/${user.id}`}
           >
             <RegisterPage />
           </ProtectedRoute>
@@ -127,7 +128,7 @@ function App() {
             // - else shows LandingPage at "/home"
             exact
             path="/home"
-            authRedirect="/user"
+            authRedirect={`/user/${user.id}`}
           >
             <LandingPage />
           </ProtectedRoute>
