@@ -44,7 +44,6 @@ function FarmerPage() {
 
   const addItem = () => {
     event.preventDefault();
-    console.log('this BITCH', allProducts.filter(item => item.item === nameProduct));
     const itemFromList = allProducts.filter(item => item.item === nameProduct)
     const productId = itemFromList[0].id;
     dispatch({

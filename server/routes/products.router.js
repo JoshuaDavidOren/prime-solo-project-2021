@@ -53,7 +53,6 @@ router.get('/itemlist', (req, res) => {
   });
 // adds product to farmers personal list
   router.post('/addproduct', (req, res) => {
-    console.log('this should be an object',req.body.productId);
     const product = req.body.productId
     const price = req.body.price
     const quantity = req.body.quantity

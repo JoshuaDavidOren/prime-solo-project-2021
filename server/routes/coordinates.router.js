@@ -36,7 +36,7 @@ router.post('/updatelocation', (req, res) => {
     })
 });
 // gets all locations of farmers and markets to populate Map with markers
-router.get('/locations', (req, res) => {
+router.get('/vendors', (req, res) => {
 
     pool.query('SELECT * FROM "vendors";')
     .then((results) => {

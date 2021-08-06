@@ -1,9 +1,11 @@
-const locationReducer = (state = [], action) => {
+const mapLocations = (state = [], action) => {
     switch (action.type) {
-       
+        case '|wall|alone|case|':
+          console.log('list of locations',action.payload);
+          return state = action.payload.data
         default:
-            return state;
-    }
+          return state;
+      }
 }
 
-export default locationReducer;
+export default mapLocations;

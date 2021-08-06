@@ -7,8 +7,8 @@ require('dotenv').config();
 function MapContainer(){
 const [ selected, setSelected ] = useState({});
 const [ currentPosition, setCurrentPosition ] = useState({});
-  const dispatch = useDispatch();
-//   const alderaan = useSelector(store => store.youMayFireWhenReady);
+const dispatch = useDispatch();
+const mapMarkers = useSelector(store => store.mapLocations);
 
 
   useEffect(() => {
@@ -60,8 +60,8 @@ const [ currentPosition, setCurrentPosition ] = useState({});
             zoom={13}
             center={currentPosition.lat ? currentPosition : defaultCenter}>
            
-           {/* {
-              alderaan.map(item => {
+           {
+              mapMarkers.map(item => {
                 return (
                 <Marker
                 key={item.id}
@@ -69,7 +69,7 @@ const [ currentPosition, setCurrentPosition ] = useState({});
                 onClick={() => onSelect(item)}/>
                 )
             })
-           } */}
+           }
 
            {
               selected.location &&
@@ -79,7 +79,10 @@ const [ currentPosition, setCurrentPosition ] = useState({});
                 clickable={true}
                 onCloseClick={() => setSelected({})}
               >
-                <p>{selected.id}</p>
+                <div>
+                  <p>{selected.description}</p>
+                  <a href="#profile">profile</a>
+                </div>
               </InfoWindow>
               )
            }
