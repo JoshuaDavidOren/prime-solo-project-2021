@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
@@ -9,15 +9,8 @@ function FarmerPage() {
   const user = useSelector((store) => store.user);
   const products = useSelector((store) => store.productReducer);
   const info = profile[0];
-  const dispatch = useDispatch();
 
-  const id = useParams()
-  console.log('tell me this is an ID', id);
 
-  useEffect(() => {
-    dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: id });
-    dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: id });
-  }, []);
 
 
   console.log(user);

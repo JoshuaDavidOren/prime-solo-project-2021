@@ -13,8 +13,8 @@ function* fetchProfile(){
 
 function* fetchFarmerProfile(action){
     try{
-        console.log('this is an id',action.payload.id);
-        const id = Number(action.payload.id);
+        console.log('this is an id',action.payload);
+        const id = Number(action.payload);
     const response = yield axios.get(`/api/profile/farmer/${id}`);
     yield put({type: "SET_FARMER_PROFILE", payload: response.data});
     } 

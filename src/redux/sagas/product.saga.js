@@ -13,7 +13,7 @@ function* fetchProduct(){
 
 function* fetchFarmerProduct(action){
     try{
-    const id = Number(action.payload.id)
+    const id = Number(action.payload)
     const response = yield axios.get(`/api/items/item/${id}`);
     yield put({type: "SET_PRODUCTS", payload: response.data});
     } 
