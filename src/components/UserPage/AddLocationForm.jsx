@@ -15,31 +15,50 @@ function AddLocationForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch({type: '-PIERCED-MAN-CASE-', payload: {address: address, city: city, state: state, zip: zip}})
+    dispatch({type: '-PIERCED-MAN-CASE-', 
+    payload: {
+        address: address, 
+        city: city, 
+        state: state, 
+        zip: zip, 
+        availability: availability, 
+        description: description
+    }})
     setAddress('');
     setCity('');
     setState('');
     setZip('');
+    setAvailability('');
+    setDescription('');
   }
 
 return (
   
-                <section>
-                    <header>
-                        <h3>Add A Location to Sell Your Products</h3>
-                    </header>
-                  <TextField value={address} type="text" placeholder='street' onChange={(evt) => setAddress(evt.target.value)} required />
-                  <TextField value={city} type="text" placeholder='city'  onChange={(evt) => setCity(evt.target.value)} required />
-                  <TextField value={state} type="text" placeholder='state' onChange={(evt) => setState(evt.target.value)} required />
-                  <TextField value={zip} type="text" placeholder='zip'  onChange={(evt) => setZip(evt.target.value)} required />
-                  <div></div>
-                  <br />
-                  <TextField
+    <section>
+        <header>
+            <h3>Add A Location to Sell Your Products</h3>
+        </header>
+        <TextField 
+        value={address} type="text" placeholder='street' 
+        onChange={(evt) => setAddress(evt.target.value)} required />
+        <TextField 
+        value={city} type="text" placeholder='city'  
+        onChange={(evt) => setCity(evt.target.value)} required />
+        <TextField 
+        value={state} type="text" placeholder='state' 
+        onChange={(evt) => setState(evt.target.value)} required />
+        <TextField 
+        value={zip} type="text" placeholder='zip'  
+        onChange={(evt) => setZip(evt.target.value)} required />
+        <div></div>
+        <br />
+        <TextField
           id="outlined-textarea"
           label="Availability"
           placeholder="What days and times will you be here?"
           multiline
           variant="outlined"
+          onChange={(evt) => setAvailability(evt.target.value)} required
         />
         <div></div>
         <br />
@@ -50,18 +69,19 @@ return (
           rows={4}
           placeholder='Quick Overview of yourself and products'
           variant="outlined"
+          onChange={(evt) => setDescription(evt.target.value)} required
         />
         <div></div>
         <br/>
         <Button
-                                      type='submit'
-                                      style={{ height: "24px" }}
-                                      variant="contained"
-                                      color="default"
-                                      onClick={(event) => handleSubmit(event)}
-                                    >
-                                      Submit
-                                    </Button>
+            type='submit'
+            style={{ height: "24px" }}
+            variant="contained"
+            color="default"
+            onClick={(event) => handleSubmit(event)}
+        >
+            Submit
+        </Button>
                 
                 </section>
       
