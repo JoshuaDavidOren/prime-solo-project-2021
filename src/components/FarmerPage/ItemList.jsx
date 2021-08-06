@@ -14,33 +14,6 @@ function ItemList(item){
     const dispatch = useDispatch();
 
     
-    const deleteFromList = (product_id) => {
-    Swal.fire({
-        title: 'Are you sure?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Remove Item!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-          confirmedDelete(product_id);
-        }
-        
-      })
-    }
-
-    const confirmedDelete = (product_id) => {
-        dispatch({type: "DELETE_FROM_LIST", payload: product_id })
-    } 
-    const updateAvailable = (product_id) => {
-        dispatch({type: "UPDATE_AVAILABLE", payload: product_id })
-    } 
 
 
             return(  <>

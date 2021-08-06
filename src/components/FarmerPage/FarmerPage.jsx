@@ -10,6 +10,8 @@ function FarmerPage() {
   const products = useSelector((store) => store.productReducer);
   const info = profile[0];
 
+  const availableProducts = products.filter(item => item.available === true)
+
 
 
 
@@ -31,7 +33,7 @@ function FarmerPage() {
         <center>
           <section>
             <h2>Groceries For Sale</h2>
-            {products.map((item) => {
+            {availableProducts.map((item) => {
               return (
                 <ItemList
                   id={item.id}

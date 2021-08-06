@@ -52,7 +52,7 @@ const mapMarkers = useSelector(store => store.mapLocations);
         <div>
 </div>
         <div>
-        <button onClick={locate()}>ME</button>
+        {/* <button onClick={locate()}>ME</button> */}
         </div>
          <LoadScript
            googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_API}`}>
