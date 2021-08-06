@@ -81,7 +81,7 @@ const mapMarkers = useSelector(store => store.mapLocations);
               >
                 <div>
                   <p>{selected.description}</p>
-                  <a href="#profile">profile</a>
+                  <a href={`#user/${selected.user_id}`}>profile</a>
                 </div>
               </InfoWindow>
               )
