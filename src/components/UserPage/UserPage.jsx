@@ -67,121 +67,120 @@ function UserPage() {
 
   console.log(user);
   return (
-    <section>
-      <header>
-        <div className="profile-image"></div>
-        <h3>{info.page_title}</h3>
-        <h4>{info.email}</h4>
-        <h4>{info.phone_number}</h4>
-        <p>
-          discription of farmer with beautiful words and thinsg obut the farm
-          that has been in there family for one million generations thank you
-          farmer and buyres THANK YOU
-        </p>
-      </header>
-      {user.user_type === true ? (
-        <section>
-          <h2>Groceries For Sale</h2>
-          {products.map((item) => {
-            return (
-              <CustomItemList
-                id={item.id}
-                available={item.available}
-                title={item.item}
-                price={item.asking_price}
-                product_id={item.product_id}
-                quantity={item.quantity}
-              />
-            );
-          })}
-
-        </section>
-      ) : (
-        <section>
-          <h2>Favorites</h2>
-          {favFarmer.map((item) => {
-            return <div>{item.first_name}</div>;
-          })}
-          {favMarket.map((item) => {
-            return <div>{item.name}</div>;
-          })}
-        </section>
-      )}
-
-      <div>
-        {user.user_type === true ? 
+    <center>
+      <section>
+        <header>
+          <div className="profile-image"></div>
+          <h3>{info.page_title}</h3>
+          <h4>{info.email}</h4>
+          <h4>{info.phone_number}</h4>
+          <p>
+            discription of farmer with beautiful words and thinsg obut the farm
+            that has been in there family for one million generations thank you
+            farmer and buyres THANK YOU
+          </p>
+        </header>
+        {user.user_type === true ? (
           <section>
-            <h3>Add Item</h3>
-            <br />
-            <form action="submit">
-              <Autocomplete
-                inputValue={nameProduct}
-                onInputChange={(event, newInputValue) => {
-                  setNameProduct(newInputValue);
-                }}
-                id="controllable-states-demo"
-                options={list}
-                getOptionLabel={(option) => option}
-                style={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Item Name" variant="outlined" />
-                )}
-              />
-              <br/>
-              <TextField
-                id="outlined-basic1"
-                value={price}
-                label="Set Price"
-                variant="outlined"
-                onChange={(evt) => setPrice(evt.target.value)}
-              />
-              <br/>
-              <TextField
-                id="outlined-basic"
-                value={quantity}
-                label="Quantity"
-                variant="outlined"
-                onChange={(evt) => setQuantity(evt.target.value)}
-              />
-              <br/>
-              <Button
-                type="submit"
-                style={{ height: "40px" }}
-                variant="contained"
-                color="primary"
-                onClick={() => addItem()}
-              >
-                Submit
-              </Button>
-            </form>
-
-            <h4>Can't find the product you would like to add?</h4>
-            <h3>Add it Here</h3>
-            <TextField
-                id="outlined-basic"
-                value={newProduct}
-                label="New Item"
-                variant="outlined"
-                onChange={(evt) => setNewProduct(evt.target.value)}
-              />
-               <Button
-                type="submit"
-                style={{ height: "40px" }}
-                variant="contained"
-                color="primary"
-                onClick={() => addNewProduct()}
-              >
-                ADD
-              </Button>
-              <div>
-                <AddLocationForm />
-              </div>
+            <h2>Groceries For Sale</h2>
+            {products.map((item) => {
+              return (
+                <CustomItemList
+                  id={item.id}
+                  available={item.available}
+                  title={item.item}
+                  price={item.asking_price}
+                  product_id={item.product_id}
+                  quantity={item.quantity}
+                />
+              );
+            })}
           </section>
-         : 
-          <div></div>
-        }
-      </div>
-    </section>
+        ) : (
+          <section>
+            <h2>Favorites</h2>
+            {favFarmer.map((item) => {
+              return <div>{item.first_name}</div>;
+            })}
+            {favMarket.map((item) => {
+              return <div>{item.name}</div>;
+            })}
+          </section>
+        )}
+        <div>
+          {user.user_type === true ?
+            <section>
+              <h3>Add Item</h3>
+              <br />
+              <form action="submit">
+                <Autocomplete
+                  inputValue={nameProduct}
+                  onInputChange={(event, newInputValue) => {
+                    setNameProduct(newInputValue);
+                  }}
+                  id="controllable-states-demo"
+                  options={list}
+                  getOptionLabel={(option) => option}
+                  style={{ width: 300 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Item Name" variant="outlined" />
+                  )}
+                />
+                <br/>
+                <TextField
+                  id="outlined-basic1"
+                  value={price}
+                  label="Set Price"
+                  variant="outlined"
+                  onChange={(evt) => setPrice(evt.target.value)}
+                />
+                <br/>
+                <TextField
+                  id="outlined-basic"
+                  value={quantity}
+                  label="Quantity"
+                  variant="outlined"
+                  onChange={(evt) => setQuantity(evt.target.value)}
+                />
+                <br/>
+                <Button
+                  type="submit"
+                  style={{ height: "40px" }}
+                  variant="contained"
+                  color="primary"
+                  onClick={() => addItem()}
+                >
+                  Submit
+                </Button>
+              </form>
+              <h4>Can't find the product you would like to add?</h4>
+              <h3>Add it Here</h3>
+              <TextField
+                  id="outlined-basic"
+                  value={newProduct}
+                  label="New Item"
+                  variant="outlined"
+                  onChange={(evt) => setNewProduct(evt.target.value)}
+                />
+                 <Button
+                  type="submit"
+                  style={{ height: "40px" }}
+                  variant="contained"
+                  color="primary"
+                  onClick={() => addNewProduct()}
+                >
+                  ADD
+                </Button>
+                <div>
+                  <AddLocationForm />
+                </div>
+            </section>
+           :
+            <div></div>
+          }
+        </div>
+      </section>
+    </center>
   );
 }
 
