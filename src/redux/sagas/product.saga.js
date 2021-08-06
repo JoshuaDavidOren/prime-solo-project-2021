@@ -65,7 +65,7 @@ function* getAllProducts(){
 function* addProductToProducts(action){
     try{
         yield axios.post( '/api/items/product', action.payload);
-        yield put({type: 'GET_PRODUCT_DATA'});
+        yield put({type: "GET_ALL_PRODUCTS"});
     } 
     catch(error) {
         console.log('Error POSTing to database', error);
