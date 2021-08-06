@@ -13,9 +13,9 @@ function* getMeTheCoordinates() {
     }
   }
 
-  function addVendor() {
+  function* addVendor(action) {
     try{
-        yield call(axios.post, '/api/location', action.payload);
+        yield axios.post( '/api/locations/updatelocation', action.payload);
         yield put({type: 'whispering!screams!case'})
       }
       catch(error) {
