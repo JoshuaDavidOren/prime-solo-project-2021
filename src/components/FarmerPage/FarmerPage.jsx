@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 function FarmerPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const profile = useSelector((store) => store.profileReducer);
+  const profile = useSelector((store) => store.farmerProfileReducer);
   const user = useSelector((store) => store.user);
   const products = useSelector((store) => store.productReducer);
   const info = profile[0];
@@ -16,6 +16,7 @@ function FarmerPage() {
 
   useEffect(() => {
     dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: id });
+    dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: id });
   }, []);
 
 
@@ -24,7 +25,7 @@ function FarmerPage() {
     <section>
       <header>
         <div className="profile-image"></div>
-        <h3>{info.page_title}</h3>
+        {/* <h3>{info.page_title}</h3> */}
         <h4>{info.email}</h4>
         <h4>{info.phone_number}</h4>
         <p>

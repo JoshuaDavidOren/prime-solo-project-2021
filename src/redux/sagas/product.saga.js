@@ -11,6 +11,17 @@ function* fetchProduct(){
     }
 }
 
+function* fetchFarmerProduct(action){
+    try{
+    const id = Number(action.payload.id)
+    const response = yield axios.get(`/api/items/item/${id}`);
+    yield put({type: "SET_PRODUCTS", payload: response.data});
+    } 
+    catch(err) {
+        console.log('Error GETing profile', err);
+    }
+}
+
 function* updateProduct(action){
     try{
     yield axios.put(`/api/items/item/${action.payload}`);
@@ -68,6 +79,7 @@ function* productSaga(){
     yield takeEvery("ADD_ITEM_FARMER_LIST", addProductList);
     yield takeEvery("GET_ALL_PRODUCTS", getAllProducts);
     yield takeEvery("ADD_NEW_PRODUCT", addProductToProducts);
+    yield takeEvery('GET_PRODUCT_DATA_FARMER',fetchFarmerProduct);
 }
 
 export default productSaga;
