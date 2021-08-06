@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const coordinatesRouter = require('./routes/coordinates.router')
 const productsRouter = require('./routes/products.router')
 const favoriteRouter = require('./routes/favorite.router')
+const profileRouter = require('./routes/profile.router')
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
+app.use('/api/profile/', profileRouter)
 app.use('/api/user', userRouter);
 app.use('/api/items', productsRouter)
 app.use('/api/locations', coordinatesRouter)

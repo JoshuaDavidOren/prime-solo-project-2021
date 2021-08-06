@@ -66,7 +66,7 @@ function App() {
           <ProtectedRoute
             // logged in shows FarmerPage else shows LoginPage
             exact
-            path="/profile"
+            path="/profile/:id"
           >
             <FarmerPage />
           </ProtectedRoute>
