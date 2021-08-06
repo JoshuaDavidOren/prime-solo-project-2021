@@ -58,43 +58,7 @@ function ItemList(item){
                                     <h4>{item.price}</h4><p></p><h4>
                             {item.quantity}</h4></td>
                             </tr>
-                            <tr>
-                               
-                            </tr>
-                            <tr>
-                                <td>
-                                   {item.available === true ?
-                                    <Button
-                                      style={{ height: "24px" }}
-                                      variant="contained"
-                                      color="primary"
-                                      onClick={() => updateAvailable(item.product_id)}
-                                    >
-                                      Available
-                                    </Button>
-                                    :
-                                    <Button
-                                      style={{ height: "24px" }}
-                                      variant="contained"
-                                      color="default"
-                                      onClick={() => updateAvailable(item.product_id)}
-                                    >
-                                      Not Available
-                                    </Button>
-                                    }
-                                </td>
-                                <td></td>
-                                <td>
-                                <Button
-                                      style={{  height: "24px" }}
-                                      variant="contained"
-                                      color="secondary"
-                                      onClick={() => deleteFromList(item.product_id)}
-                                    >
-                                      Remove
-                                    </Button>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                  

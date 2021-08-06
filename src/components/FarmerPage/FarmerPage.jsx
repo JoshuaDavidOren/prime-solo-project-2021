@@ -25,7 +25,7 @@ function FarmerPage() {
     <section>
       <header>
         <div className="profile-image"></div>
-        {/* <h3>{info.page_title}</h3> */}
+        <h3>{info.page_title}</h3>
         <h4>{info.email}</h4>
         <h4>{info.phone_number}</h4>
         <p>
