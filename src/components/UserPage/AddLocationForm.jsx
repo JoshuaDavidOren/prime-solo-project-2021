@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import TextField from "@material-ui/core/TextField";
 
 function AddLocationForm() {
   const [address, setAddress] = useState('')
@@ -25,6 +26,23 @@ return (
                   <input value={city} type="text" placeholder='city'  onChange={(evt) => setCity(evt.target.value)} required />
                   <input value={state} type="text" placeholder='state' onChange={(evt) => setState(evt.target.value)} required />
                   <input value={zip} type="text" placeholder='zip'  onChange={(evt) => setZip(evt.target.value)} required />
+                  
+                  <TextField
+          id="outlined-textarea"
+          label="Availability"
+          placeholder="What days and times will you be here?"
+          multiline
+          variant="outlined"
+        />
+                  <TextField
+          id="outlined-multiline-static"
+          label="Description"
+          multiline
+          rows={4}
+          placeholder='Quick Overview of yourself and products'
+          variant="outlined"
+        />
+        <br/>
                   <button type='submit' onClick={(event) => handleSubmit(event)}>submit</button>
                 </section>
       
