@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ItemList from "./ItemList";
+import CustomItemList from "./CustomItemList";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
+import AddLocationForm from './AddLocationForm'
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -83,7 +84,7 @@ function UserPage() {
           <h2>Groceries For Sale</h2>
           {products.map((item) => {
             return (
-              <ItemList
+              <CustomItemList
                 id={item.id}
                 available={item.available}
                 title={item.item}
@@ -93,6 +94,7 @@ function UserPage() {
               />
             );
           })}
+
         </section>
       ) : (
         <section>
@@ -171,6 +173,9 @@ function UserPage() {
               >
                 ADD
               </Button>
+              <div>
+                <AddLocationForm />
+              </div>
           </section>
          : 
           <div></div>
