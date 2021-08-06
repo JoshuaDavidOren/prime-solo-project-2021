@@ -53,7 +53,7 @@ router.get('/itemlist', (req, res) => {
   });
 // adds product to farmers personal list
   router.post('/addproduct', (req, res) => {
-    console.log('this should be an object',req.body);
+    console.log('this should be an object',req.body.productId);
     const product = req.body.productId
     const price = req.body.price
     const quantity = req.body.quantity
@@ -61,7 +61,7 @@ router.get('/itemlist', (req, res) => {
     INSERT INTO "farmer_products" ("user_id" , "product_id" , "asking_price", "quantity", "available")
 VALUES ( $1, $2, $3, $4, true)  
     ;`;
-    pool.query(qText,[req.user.id, 3, price, quantity])
+    pool.query(qText,[req.user.id, product, price, quantity])
     .then(() => {
         console.log('INSERT to "farmer_products" successful');
         res.sendStatus(201);

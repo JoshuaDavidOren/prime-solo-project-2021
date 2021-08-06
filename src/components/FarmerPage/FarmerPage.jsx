@@ -16,6 +16,14 @@ function FarmerPage() {
   const info = profile[0];
   const dispatch = useDispatch();
 
+  console.log('all', allProducts);
+
+  const list = allProducts.map(item => {
+    return item.item
+  }) 
+
+  console.log(list);
+
   const array = [
     { name: "apples" },
     { name: "bananas" },
@@ -36,9 +44,12 @@ function FarmerPage() {
 
   const addItem = () => {
     event.preventDefault();
+    console.log('this BITCH', allProducts.filter(item => item.item === nameProduct));
+    const itemFromList = allProducts.filter(item => item.item === nameProduct)
+    const productId = itemFromList[0].id;
     dispatch({
       type: "ADD_ITEM_FARMER_LIST",
-      payload: { nameProduct: nameProduct, price: price, quantity: quantity },
+      payload: { productId: productId, price: price, quantity: quantity },
     });
     setNameProduct('');
     setPrice('');
@@ -108,8 +119,8 @@ function FarmerPage() {
                   setNameProduct(newInputValue);
                 }}
                 id="controllable-states-demo"
-                options={array}
-                getOptionLabel={(option) => option.name}
+                options={list}
+                getOptionLabel={(option) => option}
                 style={{ width: 300 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Item Name" variant="outlined" />
