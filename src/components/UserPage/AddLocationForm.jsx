@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 function AddLocationForm() {
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zip, setZip] = useState('')
+  const [description, setDescription] = useState('')
+  const [availability, setAvailability] = useState('');
 
   const dispatch = useDispatch()
 
@@ -22,11 +25,15 @@ function AddLocationForm() {
 return (
   
                 <section>
-                  <input value={address} type="text" placeholder='street' onChange={(evt) => setAddress(evt.target.value)} required />
-                  <input value={city} type="text" placeholder='city'  onChange={(evt) => setCity(evt.target.value)} required />
-                  <input value={state} type="text" placeholder='state' onChange={(evt) => setState(evt.target.value)} required />
-                  <input value={zip} type="text" placeholder='zip'  onChange={(evt) => setZip(evt.target.value)} required />
-                  
+                    <header>
+                        <h3>Add A Location to Sell Your Products</h3>
+                    </header>
+                  <TextField value={address} type="text" placeholder='street' onChange={(evt) => setAddress(evt.target.value)} required />
+                  <TextField value={city} type="text" placeholder='city'  onChange={(evt) => setCity(evt.target.value)} required />
+                  <TextField value={state} type="text" placeholder='state' onChange={(evt) => setState(evt.target.value)} required />
+                  <TextField value={zip} type="text" placeholder='zip'  onChange={(evt) => setZip(evt.target.value)} required />
+                  <div></div>
+                  <br />
                   <TextField
           id="outlined-textarea"
           label="Availability"
@@ -34,6 +41,8 @@ return (
           multiline
           variant="outlined"
         />
+        <div></div>
+        <br />
                   <TextField
           id="outlined-multiline-static"
           label="Description"
@@ -42,8 +51,18 @@ return (
           placeholder='Quick Overview of yourself and products'
           variant="outlined"
         />
+        <div></div>
         <br/>
-                  <button type='submit' onClick={(event) => handleSubmit(event)}>submit</button>
+        <Button
+                                      type='submit'
+                                      style={{ height: "24px" }}
+                                      variant="contained"
+                                      color="default"
+                                      onClick={(event) => handleSubmit(event)}
+                                    >
+                                      Submit
+                                    </Button>
+                
                 </section>
       
 )
