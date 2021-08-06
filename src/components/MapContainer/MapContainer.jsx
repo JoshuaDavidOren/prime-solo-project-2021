@@ -2,6 +2,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 require('dotenv').config();
 
 function MapContainer(){
@@ -9,7 +10,7 @@ const [ selected, setSelected ] = useState({});
 const [ currentPosition, setCurrentPosition ] = useState({});
 const dispatch = useDispatch();
 const mapMarkers = useSelector(store => store.mapLocations);
-
+const history = useHistory();
 
   useEffect(() => {
     dispatch({type: 'whispering!screams!case'})
@@ -31,6 +32,9 @@ const mapMarkers = useSelector(store => store.mapLocations);
   
   const onSelect = item => {
     setSelected(item);
+    console.log('who are you',item);
+    dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: item.user_id });
+    dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: item.user_id });
   }
 
 
@@ -42,6 +46,7 @@ const mapMarkers = useSelector(store => store.mapLocations);
   const defaultCenter = {
     lat: 44.978333, lng: -93.263596
   }
+
 
   return (
       
@@ -81,7 +86,7 @@ const mapMarkers = useSelector(store => store.mapLocations);
               >
                 <div>
                   <p>{selected.description}</p>
-                  <a href={`#user/${selected.user_id}`}>profile</a>
+                  <a href={`#profile/${selected.user_id}`}>Profile</a>
                 </div>
               </InfoWindow>
               )
