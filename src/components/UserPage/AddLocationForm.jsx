@@ -15,7 +15,7 @@ function AddLocationForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch({type: '-PIERCED-MAN-CASE-', 
+    dispatch({type: 'ADD_VENDOR', 
     payload: {
         address: address, 
         city: city, 
