@@ -1,39 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ItemList from "./ItemList";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import CustomItemList from "./CustomItemList";
+import AddLocationForm from "./AddLocationForm";
+import AddItemForm from "./AddItemForm";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const profile = useSelector((store) => store.profileReducer);
   const user = useSelector((store) => store.user);
   const products = useSelector((store) => store.productReducer);
-  const allProducts = useSelector((store) => store.allProductsReducer)
   const favMarket = useSelector((store) => store.favoriteMarketReducer);
   const favFarmer = useSelector((store) => store.favoriteFarmerReducer);
   const info = profile[0];
+  const classes = useStyles();
   const dispatch = useDispatch();
-
-  console.log('all', allProducts);
-
-  const list = allProducts.map(item => {
-    return item.item
-  }) 
-
-  console.log(list);
-
-  const array = [
-    { name: "apples" },
-    { name: "bananas" },
-    { name: "peaches" },
-    { name: "eggplants" },
-  ];
-  const [nameProduct, setNameProduct] = React.useState("");
-  const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [ newProduct, setNewProduct] = useState('');
 
   useEffect(() => {
     dispatch({ type: "GET_ALL_PRODUCTS" });
@@ -42,141 +28,155 @@ function UserPage() {
     dispatch({ type: "GET_FAVORITE_MARKET_DATA" });
   }, []);
 
-  const addItem = () => {
-    event.preventDefault();
-    const itemFromList = allProducts.filter(item => item.item === nameProduct)
-    const productId = itemFromList[0].id;
-    dispatch({
-      type: "ADD_ITEM_FARMER_LIST",
-      payload: { productId: productId, price: price, quantity: quantity },
-    });
-    setNameProduct('');
-    setPrice('');
-    setQuantity('');
-  };
+  const goToFarmerProfile = (id) => {
 
-  const addNewProduct = () => {
-    event.preventDefault();
-    dispatch({
-      type: "ADD_NEW_PRODUCT",
-      payload: {newProduct: newProduct}
-    });
-    setNewProduct('');
-  } 
+  }
 
-  console.log(user);
+  const deleteFromFavoriteFarmer = (id) => {
+    dispatch({type: 'DELETE_FROM_FAVORITES_FARMER', payload: {id: id}})
+  }
+
+  const deleteFromFavoriteMarket = (id) => {
+    dispatch({type: 'DELETE_FROM_FAVORITES_MARKET', payload: {id: id}})
+  }
+
+  console.log(favMarket);
   return (
-    <section>
-      <header>
-        <div className="profile-image"></div>
-        <h3>{info.page_title}</h3>
-        <h4>{info.email}</h4>
-        <h4>{info.phone_number}</h4>
-        <p>
-          discription of farmer with beautiful words and thinsg obut the farm
-          that has been in there family for one million generations thank you
-          farmer and buyres THANK YOU
-        </p>
-      </header>
-      {user.user_type === true ? (
-        <section>
-          <h2>Groceries For Sale</h2>
-          {products.map((item) => {
-            return (
-              <ItemList
-                id={item.id}
-                available={item.available}
-                title={item.item}
-                price={item.asking_price}
-                product_id={item.product_id}
-                quantity={item.quantity}
-              />
-            );
-          })}
-        </section>
-      ) : (
-        <section>
-          <h2>Favorites</h2>
-          {favFarmer.map((item) => {
-            return <div>{item.first_name}</div>;
-          })}
-          {favMarket.map((item) => {
-            return <div>{item.name}</div>;
-          })}
-        </section>
-      )}
+    <center>
+      <section>
+        <header>
+          <div className="profile-image"></div>
+          <h3>{info.page_title}</h3>
+          <h4>{info.email}</h4>
+          <h4>{info.phone_number}</h4>
+          <p>
+            discription of farmer with beautiful words and thinsg obut the farm
+            that has been in there family for one million generations thank you
+            farmer and buyres THANK YOU
+          </p>
+        </header>
 
-      <div>
-        {user.user_type === true ? 
-          <section>
-            <h3>Add Item</h3>
-            <br />
-            <form action="submit">
-              <Autocomplete
-                inputValue={nameProduct}
-                onInputChange={(event, newInputValue) => {
-                  setNameProduct(newInputValue);
-                }}
-                id="controllable-states-demo"
-                options={list}
-                getOptionLabel={(option) => option}
-                style={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Item Name" variant="outlined" />
-                )}
-              />
-              <br/>
-              <TextField
-                id="outlined-basic1"
-                value={price}
-                label="Set Price"
-                variant="outlined"
-                onChange={(evt) => setPrice(evt.target.value)}
-              />
-              <br/>
-              <TextField
-                id="outlined-basic"
-                value={quantity}
-                label="Quantity"
-                variant="outlined"
-                onChange={(evt) => setQuantity(evt.target.value)}
-              />
-              <br/>
-              <Button
-                type="submit"
-                style={{ height: "40px" }}
-                variant="contained"
-                color="primary"
-                onClick={() => addItem()}
-              >
-                Submit
-              </Button>
-            </form>
+        <div>
+          {user.user_type === true ? (
+            <section>
+              <section>
+                <h2>Groceries For Sale</h2>
+                {products.map((item) => {
+                  return (
+                    <CustomItemList
+                      id={item.id}
+                      available={item.available}
+                      title={item.item}
+                      price={item.asking_price}
+                      product_id={item.product_id}
+                      quantity={item.quantity}
+                    />
+                  );
+                })}
+              </section>
 
-            <h4>Can't find the product you would like to add?</h4>
-            <h3>Add it Here</h3>
-            <TextField
-                id="outlined-basic"
-                value={newProduct}
-                label="New Item"
-                variant="outlined"
-                onChange={(evt) => setNewProduct(evt.target.value)}
-              />
-               <Button
-                type="submit"
-                style={{ height: "40px" }}
-                variant="contained"
-                color="primary"
-                onClick={() => addNewProduct()}
-              >
-                ADD
-              </Button>
-          </section>
-         : 
-          <div></div>
-        }
-      </div>
-    </section>
+              <AddItemForm />
+
+              <AddLocationForm />
+            </section>
+          ) : (
+            <div>
+              <section>
+                <h2>Favorites</h2>
+                <h3>Farmers</h3>
+                {favFarmer.map((item) => {
+                  return (
+                    <Grid
+                      item
+                      style={{ height: "200px", width: "350px" }}
+                      id={item.id}
+                    >
+                      <Paper className={classes.paper}>
+                        <br />
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <h4>{item.first_name} </h4>
+                                <h4>{(item.last_name)}</h4>
+                              </td>
+                              </tr>
+                              <tr>
+                              <td>
+                                <Button
+                                  style={{ height: "24px" }}
+                                  variant="contained"
+                                  color="primary"
+                                  onClick={() =>
+                                    goToFarmerProfile(item.farmer_type_id)
+                                  }
+                                >
+                                  Go To Profile
+                                </Button>
+                              </td>
+                              <td></td>
+                              <td>
+                                <Button
+                                  style={{ height: "24px" }}
+                                  variant="contained"
+                                  color="secondary"
+                                  onClick={() =>
+                                    deleteFromFavoriteFarmer(item.farmer_type_id)
+                                  }
+                                >
+                                  Remove
+                                </Button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </Paper>
+                    </Grid>
+                  );
+                })}
+                <h3>Markets</h3>
+                {favMarket.map((item) => {
+                  return (
+                    <Grid
+                      item
+                      style={{ height: "200px", width: "350px" }}
+                      id={item.id}
+                    >
+                      <Paper className={classes.paper}>
+                        <br />
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <h4>{item.name} </h4>
+                              </td>
+                              </tr>
+                             <tr>
+                              <td>
+                                <Button
+                                  style={{ height: "24px" }}
+                                  variant="contained"
+                                  color="secondary"
+                                  onClick={() =>
+                                    deleteFromFavoriteMarket(item.id)
+                                  }
+                                >
+                                  Remove
+                                </Button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </Paper>
+                    </Grid>
+                  );
+                })}
+              </section>
+            </div>
+          )}
+        </div>
+      </section>
+    </center>
   );
 }
 

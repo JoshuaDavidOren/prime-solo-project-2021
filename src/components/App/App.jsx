@@ -4,6 +4,8 @@ import {
   Route,
   Redirect,
   Switch,
+  useParams,
+  useHistory,
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +31,7 @@ import AddItemForm from '../AddItemForm/AddItemForm';
 function App() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);

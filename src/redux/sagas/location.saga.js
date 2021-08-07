@@ -12,7 +12,20 @@ function* getMeTheCoordinates() {
       console.log('Error Geting locations', error);
     }
   }
+
+  function* addVendor(action) {
+    try{
+        yield axios.post( '/api/locations/updatelocation', action.payload);
+        yield put({type: 'whispering!screams!case'})
+      }
+      catch(error) {
+        console.log('Error adding vendor', error);
+      }
+  }
+
+
   function* locationSaga () {
     yield takeEvery('whispering!screams!case', getMeTheCoordinates);
+    yield takeEvery('ADD_VENDOR', addVendor)
     }
 export default locationSaga;

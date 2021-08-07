@@ -124,3 +124,6 @@ input[type="password"]
   background-color: #497442;
   margin: 10%;
 }
+.p-head {
+  padding: 5%;
+}

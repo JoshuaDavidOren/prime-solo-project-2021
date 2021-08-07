@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/market", (req, res) => {
   const qText = `
-  SELECT "farmers_market".name FROM "favorite_connections"
+  SELECT "farmers_market".name, "farmers_market".id  FROM "favorite_connections"
   JOIN "farmers_market" on "favorite_connections".farmers_markets_id = "farmers_market".id
   WHERE "user_type_id" = $1; 
   `;
@@ -37,6 +37,7 @@ router.get("/farmer", (req, res) => {
 });
 
 router.post("/farmer", (req, res) => {
+  console.log('favorite id', req.body);
   const qText = `
     INSERT INTO "favorite_connections" ("user_type_id", "farmer_type_id")
     VALUES ($1, $2) 
