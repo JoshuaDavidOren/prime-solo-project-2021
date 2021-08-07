@@ -28,7 +28,15 @@ function UserPage() {
     dispatch({ type: "GET_FAVORITE_MARKET_DATA" });
   }, []);
 
-  console.log(user);
+  const goToFarmerProfile = (id) => {
+
+  }
+
+  const deleteFromFavorites = (id) => {
+    dispatch({type: 'DELETE_FROM_FAVORITES', payload: {id: id}})
+  }
+
+  console.log(favFarmer);
   return (
     <center>
       <section>
@@ -62,61 +70,64 @@ function UserPage() {
                   );
                 })}
               </section>
-              
-                <AddItemForm />
-              
-                <AddLocationForm />
-              
+
+              <AddItemForm />
+
+              <AddLocationForm />
             </section>
           ) : (
             <div>
               <section>
                 <h2>Favorites</h2>
                 {favFarmer.map((item) => {
-                  return <Grid item style={{height: "150px", width: '350px' }} id={item.id}> 
-               
-                  <Paper className={classes.paper}>
-                    
-                    
-                    <br />
-                    <table>
-                        <tbody>
+                  return (
+                    <Grid
+                      item
+                      style={{ height: "150px", width: "350px" }}
+                      id={item.id}
+                    >
+                      <Paper className={classes.paper}>
+                        <br />
+                        <table>
+                          <tbody>
                             <tr>
-                            <td><h4>{item.first_name, item.last_name}</h4></td>
-                            </tr>
-                            <tr>
-                               
-                            </tr>
-                            <tr>
-                                
-                                
-                                <td><Button
-                                      style={{  height: "24px" }}
-                                      variant="contained"
-                                      color="primary"
-                                      onClick={() => deleteFromList(item.product_id)}
-                                    >
-                                      Go To Profile
-                                    </Button></td>
-                                    <td></td>
-                                <td>
+                              <td>
+                                <h4>{item.first_name} </h4>
+                                <h4>{(item.last_name)}</h4>
+                              </td>
+                              </tr>
+                              <tr>
+                              <td>
                                 <Button
-                                      style={{  height: "24px" }}
-                                      variant="contained"
-                                      color="secondary"
-                                      onClick={() => deleteFromList(item.product_id)}
-                                    >
-                                      Remove
-                                    </Button>
-                                </td>
+                                  style={{ height: "24px" }}
+                                  variant="contained"
+                                  color="primary"
+                                  onClick={() =>
+                                    goToFarmerProfile(item.farmer_type_id)
+                                  }
+                                >
+                                  Go To Profile
+                                </Button>
+                              </td>
+                              <td></td>
+                              <td>
+                                <Button
+                                  style={{ height: "24px" }}
+                                  variant="contained"
+                                  color="secondary"
+                                  onClick={() =>
+                                    deleteFromFavorites(item.farmer_type_id)
+                                  }
+                                >
+                                  Remove
+                                </Button>
+                              </td>
                             </tr>
-                        </tbody>
-                    </table>
-                 
-                  </Paper>
-                  
-
-                </Grid>;
+                          </tbody>
+                        </table>
+                      </Paper>
+                    </Grid>
+                  );
                 })}
                 {favMarket.map((item) => {
                   return <div>{item.name}</div>;
