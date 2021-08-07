@@ -32,11 +32,15 @@ function UserPage() {
 
   }
 
-  const deleteFromFavorites = (id) => {
-    dispatch({type: 'DELETE_FROM_FAVORITES', payload: {id: id}})
+  const deleteFromFavoriteFarmer = (id) => {
+    dispatch({type: 'DELETE_FROM_FAVORITES_FARMER', payload: {id: id}})
   }
 
-  console.log(favFarmer);
+  const deleteFromFavoriteMarket = (id) => {
+    dispatch({type: 'DELETE_FROM_FAVORITES_MARKET', payload: {id: id}})
+  }
+
+  console.log(favMarket);
   return (
     <center>
       <section>
@@ -79,11 +83,12 @@ function UserPage() {
             <div>
               <section>
                 <h2>Favorites</h2>
+                <h3>Farmers</h3>
                 {favFarmer.map((item) => {
                   return (
                     <Grid
                       item
-                      style={{ height: "150px", width: "350px" }}
+                      style={{ height: "200px", width: "350px" }}
                       id={item.id}
                     >
                       <Paper className={classes.paper}>
@@ -116,7 +121,7 @@ function UserPage() {
                                   variant="contained"
                                   color="secondary"
                                   onClick={() =>
-                                    deleteFromFavorites(item.farmer_type_id)
+                                    deleteFromFavoriteFarmer(item.farmer_type_id)
                                   }
                                 >
                                   Remove
@@ -129,8 +134,42 @@ function UserPage() {
                     </Grid>
                   );
                 })}
+                <h3>Markets</h3>
                 {favMarket.map((item) => {
-                  return <div>{item.name}</div>;
+                  return (
+                    <Grid
+                      item
+                      style={{ height: "200px", width: "350px" }}
+                      id={item.id}
+                    >
+                      <Paper className={classes.paper}>
+                        <br />
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <h4>{item.name} </h4>
+                              </td>
+                              </tr>
+                             <tr>
+                              <td>
+                                <Button
+                                  style={{ height: "24px" }}
+                                  variant="contained"
+                                  color="secondary"
+                                  onClick={() =>
+                                    deleteFromFavoriteMarket(item.id)
+                                  }
+                                >
+                                  Remove
+                                </Button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </Paper>
+                    </Grid>
+                  );
                 })}
               </section>
             </div>

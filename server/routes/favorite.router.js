@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/market", (req, res) => {
   const qText = `
-  SELECT "farmers_market".name FROM "favorite_connections"
+  SELECT "farmers_market".name, "farmers_market".id  FROM "favorite_connections"
   JOIN "farmers_market" on "favorite_connections".farmers_markets_id = "farmers_market".id
   WHERE "user_type_id" = $1; 
   `;
