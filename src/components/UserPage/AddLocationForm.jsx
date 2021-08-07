@@ -55,6 +55,7 @@ return (
         <TextField
           id="outlined-textarea"
           label="Availability"
+          value={availability}
           placeholder="What days and times will you be here?"
           multiline
           variant="outlined"
@@ -67,6 +68,7 @@ return (
           label="Description"
           multiline
           rows={4}
+          value={description}
           placeholder='Quick Overview of yourself and products'
           variant="outlined"
           onChange={(evt) => setDescription(evt.target.value)} required

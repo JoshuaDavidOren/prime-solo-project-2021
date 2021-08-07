@@ -57,7 +57,7 @@ const mapMarkers = useSelector(store => store.mapLocations);
            googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_API}`}>
             <GoogleMap
             mapContainerStyle={mapStyles}
-            zoom={13}
+            zoom={10}
             center={currentPosition.lat ? currentPosition : defaultCenter}>
            
            {
