@@ -37,6 +37,7 @@ router.get("/farmer", (req, res) => {
 });
 
 router.post("/farmer", (req, res) => {
+  console.log('favorite id', req.body);
   const qText = `
     INSERT INTO "favorite_connections" ("user_type_id", "farmer_type_id")
     VALUES ($1, $2) 

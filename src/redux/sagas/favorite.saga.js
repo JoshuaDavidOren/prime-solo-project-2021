@@ -21,9 +21,20 @@ function* fetchFavoriteMarket(){
     }
 }
 
+function* addFavoriteFarmer(action){
+    try{
+        yield axios.post( '/api/favorite/farmer', action.payload);
+        yield put({type: 'GET_FAVORITE_FARMER_DATA'});
+    } 
+    catch(error) {
+        console.log('Error POSTing to database', error);
+    }
+}
+
 function* favoriteSaga(){
     yield takeEvery('GET_FAVORITE_FARMER_DATA', fetchFavoriteFarmer); 
     yield takeEvery('GET_FAVORITE_MARKET_DATA', fetchFavoriteMarket);
+    yield takeEvery('ADD_FAVORITE_FARMER', addFavoriteFarmer)
 }
 
 export default favoriteSaga;

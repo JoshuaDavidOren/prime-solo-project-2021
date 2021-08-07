@@ -30,7 +30,6 @@ const mapMarkers = useSelector(store => store.mapLocations);
   
   const onSelect = item => {
     setSelected(item);
-    console.log('who are you',item);
     dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: item.user_id });
     dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: item.user_id });
   }
