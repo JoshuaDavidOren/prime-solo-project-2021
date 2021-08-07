@@ -34,7 +34,7 @@ function* addFavoriteFarmer(action){
 function* favoriteSaga(){
     yield takeEvery('GET_FAVORITE_FARMER_DATA', fetchFavoriteFarmer); 
     yield takeEvery('GET_FAVORITE_MARKET_DATA', fetchFavoriteMarket);
-    yield takeEvery('ADD_FAVORITE_FARMER', addFavoriteFarmer)
+    yield takeEvery('ADD_FAVORITE_FARMER', addFavoriteFarmer);
 }
 
 export default favoriteSaga;
