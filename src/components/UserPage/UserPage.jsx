@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomItemList from "./CustomItemList";
 import AddLocationForm from "./AddLocationForm";
 import AddItemForm from "./AddItemForm";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -12,6 +18,7 @@ function UserPage() {
   const favMarket = useSelector((store) => store.favoriteMarketReducer);
   const favFarmer = useSelector((store) => store.favoriteFarmerReducer);
   const info = profile[0];
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,7 +73,50 @@ function UserPage() {
               <section>
                 <h2>Favorites</h2>
                 {favFarmer.map((item) => {
-                  return <div>{item.first_name}</div>;
+                  return <Grid item style={{height: "150px", width: '350px' }} id={item.id}> 
+               
+                  <Paper className={classes.paper}>
+                    
+                    
+                    <br />
+                    <table>
+                        <tbody>
+                            <tr>
+                            <td><h4>{item.first_name, item.last_name}</h4></td>
+                            </tr>
+                            <tr>
+                               
+                            </tr>
+                            <tr>
+                                
+                                
+                                <td><Button
+                                      style={{  height: "24px" }}
+                                      variant="contained"
+                                      color="primary"
+                                      onClick={() => deleteFromList(item.product_id)}
+                                    >
+                                      Go To Profile
+                                    </Button></td>
+                                    <td></td>
+                                <td>
+                                <Button
+                                      style={{  height: "24px" }}
+                                      variant="contained"
+                                      color="secondary"
+                                      onClick={() => deleteFromList(item.product_id)}
+                                    >
+                                      Remove
+                                    </Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 
+                  </Paper>
+                  
+
+                </Grid>;
                 })}
                 {favMarket.map((item) => {
                   return <div>{item.name}</div>;
