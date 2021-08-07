@@ -30,7 +30,7 @@ function FarmerPage() {
 
 const addToFavorites = () => {
   const id = info.user_id;
-  dispatch({ type: 'ADD_TO_FAVORITES', payload: id})
+  dispatch({ type: 'ADD_FAVORITE_FARMER', payload: {id: id}})
   
 }
 
