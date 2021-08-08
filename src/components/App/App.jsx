@@ -38,7 +38,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div class='App'>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -132,7 +132,7 @@ function App() {
             path="/home"
             authRedirect={`/user/${user.id}`}
           >
-            <LandingPage />
+            <LoginPage />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
