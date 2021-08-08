@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Swal from 'sweetalert2'
 
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
@@ -31,6 +32,27 @@ function UserPage() {
   const goToFarmerProfile = (id) => {
 
   }
+
+  const deleteFavoriteFarmer = (id) => {
+    Swal.fire({
+        title: 'Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#497442',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Remove Item!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+          deleteFromFavoriteFarmer(id);
+        }
+        
+      })
+    }
 
   const deleteFromFavoriteFarmer = (id) => {
     dispatch({type: 'DELETE_FROM_FAVORITES_FARMER', payload: {id: id}})
@@ -104,7 +126,7 @@ function UserPage() {
                               <tr>
                               <td>
                                 <Button
-                                  style={{ height: "24px" }}
+                                  style={{ height: "24px", backgroundColor: '#497442', color: '#FFFFFF'  }}
                                   variant="contained"
                                   color="primary"
                                   onClick={() =>
@@ -117,11 +139,11 @@ function UserPage() {
                               <td></td>
                               <td>
                                 <Button
-                                  style={{ height: "24px" }}
+                                  style={{ height: "24px", backgroundColor: '#efdeda', color: '#132411' }}
                                   variant="contained"
                                   color="secondary"
                                   onClick={() =>
-                                    deleteFromFavoriteFarmer(item.farmer_type_id)
+                                    deleteFavoriteFarmer(item.farmer_type_id)
                                   }
                                 >
                                   Remove
