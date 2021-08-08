@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Swal from 'sweetalert2';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
@@ -21,6 +22,7 @@ function UserPage() {
   const info = profile[0];
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({ type: "GET_ALL_PRODUCTS" });
@@ -30,7 +32,10 @@ function UserPage() {
   }, []);
 
   const goToFarmerProfile = (id) => {
-
+    dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: id });
+    dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: id });
+    console.log('click',id);
+    history.push(`/profile/${id}`)
   }
 
   const deleteFavoriteFarmer = (id) => {
