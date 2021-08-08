@@ -33,7 +33,7 @@ margin-bottom: 10px;
 width: 83%;
 height: 40px;
 color: #ffffff;
-background-color: #444;
+background-color: #223c1d;
 border: 2px solid;
 
 }
@@ -62,11 +62,11 @@ border: 2px solid;
 .btn_asLink {
   padding: 0;
   border-width: 0;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #223c1d;
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: #223c1d;
 }
 
 .btn_asLink:hover {
@@ -102,7 +102,7 @@ Form Treatment
 border-radius: 30px;
 margin: 5px;
 margin-bottom: 10px;
-border: 2px solid;
+border: 2px solid #132411;
 width: 80%;
 height: 30px;
 text-indent: 10px;
@@ -126,4 +126,13 @@ input[type="password"]
 }
 .p-head {
   padding: 5%;
+}
+
+.LoginPage {
+  background-color: #8cb285;
+}
+
+.App {
+  background-color: #8cb285;
+  height: 100%;
 }
