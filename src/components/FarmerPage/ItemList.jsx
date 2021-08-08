@@ -17,7 +17,7 @@ function ItemList(item){
 
 
             return(  <>
-                <Grid item style={{height: "320px", width: '350px' }} id={item.id}> 
+                <Grid item style={{height: "240px", width: '320px' }} id={item.id}> 
                
                   <Paper className={classes.paper}>
                     

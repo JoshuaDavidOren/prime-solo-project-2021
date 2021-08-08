@@ -37,7 +37,7 @@ const addToFavorites = () => {
   console.log(user);
   return (
     
-      <section>
+      <section class='FarmerPage'>
         <header class="p-head">
           <h1>FARMER</h1>
           <div className="profile-image"></div>
@@ -66,18 +66,21 @@ const addToFavorites = () => {
               );
             })}
           </section>
-          <Button
-                  type="submit"
-                  style={{ height: "40px" }}
-                  variant="contained"
-                  color="primary"
-                  onClick={() => addToFavorites()}
-                >
-                  Add To Favorites
-                </Button>
-        <div>
-      
-        </div>
+          <section>
+            {user.user_type === true ? (
+            <div></div>
+            ):(
+            <Button
+                    type="submit"
+                    style={{ height: "40px" }}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => addToFavorites()}
+                  >
+                    Add To Favorites
+                  </Button>
+            )}
+          </section>
         </center>
       </section>
     
