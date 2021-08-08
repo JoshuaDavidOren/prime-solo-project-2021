@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './login.reducer';
-import locationReducer from './location.reducer';
+import marketLocations from './marketlocation.reducer';
 import farmerReducer from './farmer.reducer';
 import profileReducer from './profile.reducer';
 import productReducer from './product.reducer';
 import favoriteFarmerReducer from './favoritefarmer.reducer';
 import favoriteMarketReducer from './favoritemarket.reducer';
 import allProductsReducer from './allproducts.reducer';
-import mapLocations from './location.reducer';
+import farmerLocations from './farmerlocation.reducer';
 import farmerProfileReducer from './farmerprofile.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,13 +20,13 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   farmerReducer,
   user, // will have an id and username if someone is logged in
-  locationReducer,
+  marketLocations,
   profileReducer,
   productReducer,
   favoriteFarmerReducer,
   favoriteMarketReducer,
   allProductsReducer,
-  mapLocations,
+  farmerLocations,
   farmerProfileReducer,
 });
 
