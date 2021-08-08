@@ -28,7 +28,7 @@ function ItemList(item){
         if (result.isConfirmed) {
           Swal.fire(
             'Deleted!',
-            'Your file has been deleted.',
+            'Your item has been deleted.',
             'success'
           )
           confirmedDelete(product_id);
