@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Swal from 'sweetalert2'
 
 
+
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
 function ItemList(item){
@@ -20,7 +21,7 @@ function ItemList(item){
         title: 'Are you sure?',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#497442',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, Remove Item!'
       }).then((result) => {
@@ -65,7 +66,7 @@ function ItemList(item){
                                 <td>
                                    {item.available === true ?
                                     <Button
-                                      style={{ height: "24px" }}
+                                      style={{ height: "24px", backgroundColor: '#497442', color: '#FFFFFF' }}
                                       variant="contained"
                                       color="primary"
                                       onClick={() => updateAvailable(item.product_id)}
@@ -74,7 +75,7 @@ function ItemList(item){
                                     </Button>
                                     :
                                     <Button
-                                      style={{ height: "24px" }}
+                                      style={{ height: "24px", backgroundColor: '#efdeda', color: '#132411'}}
                                       variant="contained"
                                       color="default"
                                       onClick={() => updateAvailable(item.product_id)}
@@ -86,7 +87,7 @@ function ItemList(item){
                                 <td></td>
                                 <td>
                                 <Button
-                                      style={{  height: "24px" }}
+                                      style={{  height: "24px", backgroundColor: '#bec9bc', color: '#132411' }}
                                       variant="contained"
                                       color="secondary"
                                       onClick={() => deleteFromList(item.product_id)}

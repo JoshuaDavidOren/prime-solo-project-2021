@@ -34,7 +34,7 @@ function AddLocationForm() {
 
 return (
   
-    <section>
+    <section class='UserPage'>
         <header>
             <h3>Add A Location to Sell Your Products</h3>
         </header>
@@ -77,7 +77,7 @@ return (
         <br/>
         <Button
             type='submit'
-            style={{ height: "24px" }}
+            style={{ height: "24px", }}
             variant="contained"
             color="default"
             onClick={(event) => handleSubmit(event)}

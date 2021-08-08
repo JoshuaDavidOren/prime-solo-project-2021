@@ -42,8 +42,8 @@ function UserPage() {
 
   console.log(favMarket);
   return (
-    <center>
-      <section>
+    <center >
+      <section class='UserPage'>
         <header>
           <div className="profile-image"></div>
           <h3>{info.page_title}</h3>
