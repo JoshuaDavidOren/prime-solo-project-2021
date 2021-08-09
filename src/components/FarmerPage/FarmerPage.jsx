@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ItemList from "./ItemList";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 function FarmerPage() {
+
+  const {id} = useParams();
+
+useEffect(() => {
+  console.log('in use Effect');
+  dispatch({type: 'FETCH_FARMER_LOCATIONS'})
+	dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: id });
+  dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: id });
+}, []);
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const profile = useSelector((store) => store.farmerProfileReducer);
   const user = useSelector((store) => store.user);
   const products = useSelector((store) => store.productReducer);
+  const farmerMarkers = useSelector(store => store.farmerLocations);
   const info = profile[0];
-
   const availableProducts = products.filter(item => item.available === true)
   const dispatch = useDispatch();
   
-//   const history = useHistory();
-//   useEffect(() => {
-//     loadOnRefresh();
-//   }, []);
+console.log('farmers locateions bereakin', farmerMarkers);
+const vendorInfo = farmerMarkers.filter(farmer => farmer.user_id == id)
 
-//   const loadOnRefresh = () => {
-//     console.log("-----------------",history);
-//     var thestring = history.location.pathname;
-//     var thenum = thestring.replace( /^\D+/g, '')
-//     console.log(Number(thenum));
-//     dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: Number(thenum) });
-//     dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: Number(thenum) });
-// }
+console.log(vendorInfo);
+
+
+
 
 const addToFavorites = () => {
   const id = info.user_id;
@@ -37,18 +40,21 @@ const addToFavorites = () => {
   console.log(user);
   return (
     
-      <section>
+      <section class='FarmerPage'>
         <header class="p-head">
           <h1>FARMER</h1>
           <div className="profile-image"></div>
+          { info && <> 
           <h3>{info.page_title}</h3>
           <h4>{info.email}</h4>
           <h4>{info.phone_number}</h4>
+          </>
+          } { info && <>  
           <p>
-            discription of farmer with beautiful words and thinsg obut the farm
-            that has been in there family for one million generations thank you
-            farmer and buyres THANK YOU
+            {vendorInfo[0].description}
           </p>
+          <p>{vendorInfo[0].address}</p>
+          </>}
         </header>
         <center>
           <section>
@@ -66,18 +72,21 @@ const addToFavorites = () => {
               );
             })}
           </section>
-          <Button
-                  type="submit"
-                  style={{ height: "40px" }}
-                  variant="contained"
-                  color="primary"
-                  onClick={() => addToFavorites()}
-                >
-                  Add To Favorites
-                </Button>
-        <div>
-      
-        </div>
+          <section>
+            {user.user_type === true ? (
+            <div></div>
+            ):(
+            <Button
+                    type="submit"
+                    style={{ height: "40px" }}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => addToFavorites()}
+                  >
+                    Add To Favorites
+                  </Button>
+            )}
+          </section>
         </center>
       </section>
     

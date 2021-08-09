@@ -1,6 +1,6 @@
-const mapLocations = (state = [], action) => {
+const farmerLocations = (state = [], action) => {
     switch (action.type) {
-        case '|wall|alone|case|':
+        case 'SET_FARMER_LOCATIONS':
           console.log('list of locations',action.payload);
           return state = action.payload.data
         default:
@@ -8,4 +8,4 @@ const mapLocations = (state = [], action) => {
       }
 }
 
-export default mapLocations;
+export default farmerLocations;

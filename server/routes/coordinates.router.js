@@ -38,9 +38,27 @@ router.post('/updatelocation', (req, res) => {
     })
 });
 // gets all locations of farmers and markets to populate Map with markers
-router.get('/vendors', (req, res) => {
+router.get('/market', (req, res) => {
 
-    pool.query('SELECT * FROM "vendors";')
+    pool.query(`
+    SELECT * FROM "vendors"
+    WHERE "farmers_markets_id" > 0;
+    `)
+    .then((results) => {
+        res.send(results.rows);
+    })
+    .catch((err) => {
+        console.log('Error GETing coordinates', err);
+        res.sendStatus(500)
+    })
+});
+
+router.get('/farmer', (req, res) => {
+
+    pool.query(`
+    SELECT * FROM "vendors"
+    WHERE "farmers_markets_id" = 0 ;
+    `)
     .then((results) => {
         res.send(results.rows);
     })

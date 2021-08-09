@@ -8,10 +8,22 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Swal from 'sweetalert2';
+import { useHistory, useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
 function UserPage() {
+
+  const {id} = useParams();
+  console.log(Number(id));  
+
+  useEffect(() => {
+    dispatch({ type: 'GET_PROFILE_DATA', payload: {id: Number(id)} });
+    dispatch({ type: "GET_ALL_PRODUCTS" });
+    dispatch({ type: "GET_PRODUCT_DATA" });
+    dispatch({ type: "GET_FAVORITE_FARMER_DATA" });
+    dispatch({ type: "GET_FAVORITE_MARKET_DATA" });
+  }, []);
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const profile = useSelector((store) => store.profileReducer);
   const user = useSelector((store) => store.user);
@@ -21,16 +33,15 @@ function UserPage() {
   const info = profile[0];
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  useEffect(() => {
-    dispatch({ type: "GET_ALL_PRODUCTS" });
-    dispatch({ type: "GET_PRODUCT_DATA" });
-    dispatch({ type: "GET_FAVORITE_FARMER_DATA" });
-    dispatch({ type: "GET_FAVORITE_MARKET_DATA" });
-  }, []);
+  
+  
 
   const goToFarmerProfile = (id) => {
-
+    dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: id });
+    dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: id });
+    history.push(`/profile/${id}`)
   }
 
   const deleteFavoriteFarmer = (id) => {
@@ -85,15 +96,17 @@ function UserPage() {
     dispatch({type: 'DELETE_FROM_FAVORITES_MARKET', payload: {id: id}})
   }
 
-  console.log(favMarket);
   return (
     <center >
       <section class='UserPage'>
         <header>
           <div className="profile-image"></div>
+          { info && <> 
           <h3>{info.page_title}</h3>
           <h4>{info.email}</h4>
           <h4>{info.phone_number}</h4>
+          </>
+          } 
           <p>
             discription of farmer with beautiful words and thinsg obut the farm
             that has been in there family for one million generations thank you

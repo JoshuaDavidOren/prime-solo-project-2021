@@ -29,6 +29,7 @@ router.post('/register', (req, res, next) => {
   pool.query(qText, [username, password, user_type])
     // .then(() => res.sendStatus(201))
     .then(response => {
+      console.log(response);
       const newUserId = response.rows[0].id;
       const firstName = req.body.firstName;
       const lastName = req.body.lastName;
@@ -38,10 +39,16 @@ router.post('/register', (req, res, next) => {
       
       const qText = `
       INSERT INTO "user_profile" ("user_id", "first_name", "last_name", "phone_number", "email", "page_title")
-      VALUES ( $1, $2, $3, $4, $5, $6)
+      VALUES ( $1, $2, $3, $4, $5, $6) RETURNING user_id;
+      `;
+      const q2Text = `
+      INSERT INTO "vendors" ("user_id", "farmers_markets_id", "location")
+      VALUES ($1, $2, $3);
       `;
       pool.query(qText, [newUserId, firstName, lastName, phoneNumber, email, farmName])
+      pool.query(q2Text, [newUserId, 0, {}])
     })
+    
     .then(() => {
       console.log('INSERT to "user_profile" successful');
       res.sendStatus(201);
@@ -64,7 +71,7 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile/:id', (req, res) => {
   console.log("in profile router");
   const qText = (req.user.user_type === true ? 
     `SELECT * FROM "user_profile" 
@@ -73,7 +80,7 @@ router.get('/profile', (req, res) => {
     `select "user_id", "first_name", "last_name", "phone_number", "email" from "user_profile"
     where "user_id" = $1;`);
 
-    pool.query(qText, [req.user.id])
+    pool.query(qText, [req.params.id])
     .then((response) => {
       console.log('what is this',response.rows);
       res.send(response.rows);

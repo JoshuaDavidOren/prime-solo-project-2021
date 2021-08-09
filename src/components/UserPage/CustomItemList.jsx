@@ -46,7 +46,7 @@ function ItemList(item){
 
 
             return(  <>
-                <Grid item style={{height: "320px", width: '350px' }} id={item.id}> 
+                <Grid item style={{height: "240px", width: '320px' }} id={item.id}> 
                
                   <Paper className={classes.paper}>
                     
@@ -70,9 +70,7 @@ function ItemList(item){
                                       variant="contained"
                                       color="primary"
                                       onClick={() => updateAvailable(item.product_id)}
-                                    >
-                                      Available
-                                    </Button>
+                                    >Available</Button>
                                     :
                                     <Button
                                       style={{ height: "24px", backgroundColor: '#efdeda', color: '#132411'}}
@@ -80,7 +78,7 @@ function ItemList(item){
                                       color="default"
                                       onClick={() => updateAvailable(item.product_id)}
                                     >
-                                      Not Available
+                                      Unavailable
                                     </Button>
                                     }
                                 </td>

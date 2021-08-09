@@ -77,7 +77,7 @@ return (
         <br/>
         <Button
             type='submit'
-            style={{ height: "24px", }}
+            style={{ height: "24px", backgroundColor: '#bec9bc', color: '#132411'  }}
             variant="contained"
             color="default"
             onClick={(event) => handleSubmit(event)}

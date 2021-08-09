@@ -7,10 +7,12 @@ function MapContainer(){
 const [ selected, setSelected ] = useState({});
 const [ currentPosition, setCurrentPosition ] = useState({});
 const dispatch = useDispatch();
-const mapMarkers = useSelector(store => store.mapLocations);
+const farmerMarkers = useSelector(store => store.farmerLocations);
+const marketMarkers = useSelector(store => store.marketLocations);
 
   useEffect(() => {
-    dispatch({type: 'whispering!screams!case'})
+    dispatch({type: 'FETCH_FARMER_LOCATIONS'})
+    dispatch({type: 'FETCH_MARKET_LOCATIONS'})
   }, [])
   
 
@@ -60,9 +62,26 @@ const mapMarkers = useSelector(store => store.mapLocations);
             center={currentPosition.lat ? currentPosition : defaultCenter}>
            
            {
-              mapMarkers.map(item => {
+              farmerMarkers.map(item => {
                 return (
                 <Marker
+                
+                key={item.id}
+                position={item.location}
+                onClick={() => onSelect(item)}/>
+                )
+            })
+           }
+           {
+              marketMarkers.map(item => {
+                return (
+                <Marker
+                icon={"http://maps.google.com/mapfiles/ms/icons/convienancestore.png"}
+                style={{
+                  backgroundColor: "#0000ff",
+                  fillColor: "#0000ff",
+                  strokeColor: "0000ff",
+                }}
                 key={item.id}
                 position={item.location}
                 onClick={() => onSelect(item)}/>
