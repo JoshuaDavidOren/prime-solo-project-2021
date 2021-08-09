@@ -10,6 +10,7 @@ function FarmerPage() {
 
 useEffect(() => {
   console.log('in use Effect');
+  dispatch({type: 'FETCH_FARMER_LOCATIONS'})
 	dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: id });
   dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: id });
 }, []);
@@ -17,12 +18,15 @@ useEffect(() => {
   const profile = useSelector((store) => store.farmerProfileReducer);
   const user = useSelector((store) => store.user);
   const products = useSelector((store) => store.productReducer);
+  const farmerMarkers = useSelector(store => store.farmerLocations);
   const info = profile[0];
   const availableProducts = products.filter(item => item.available === true)
   const dispatch = useDispatch();
   
+console.log('farmers locateions bereakin', farmerMarkers);
+const vendorInfo = farmerMarkers.filter(farmer => farmer.user_id == id)
 
-
+console.log(vendorInfo);
 
 
 
@@ -45,12 +49,12 @@ const addToFavorites = () => {
           <h4>{info.email}</h4>
           <h4>{info.phone_number}</h4>
           </>
-          } 
+          } { info && <>  
           <p>
-            discription of farmer with beautiful words and thinsg obut the farm
-            that has been in there family for one million generations thank you
-            farmer and buyres THANK YOU
+            {vendorInfo[0].description}
           </p>
+          <p>{vendorInfo[0].address}</p>
+          </>}
         </header>
         <center>
           <section>
