@@ -77,7 +77,7 @@ function AddItemForm() {
         <br />
         <Button
           type="submit"
-          style={{ height: "40px", backgroundColor: '#223c1d', color: '#ffffff'}}
+          style={{ height: "40px", backgroundColor: '#bec9bc', color: '#132411' }}
           variant="contained"
           color="primary"
           onClick={() => addItem()}
@@ -96,7 +96,7 @@ function AddItemForm() {
       />
       <Button
         type="submit"
-        style={{ height: "57px", backgroundColor: '#223c1d', color: '#ffffff' }}
+        style={{ height: "57px", backgroundColor: '#bec9bc', color: '#132411'  }}
         variant="contained"
         color="primary"
         onClick={() => addNewProduct()}

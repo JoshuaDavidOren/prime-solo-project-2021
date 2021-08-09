@@ -70,9 +70,7 @@ function ItemList(item){
                                       variant="contained"
                                       color="primary"
                                       onClick={() => updateAvailable(item.product_id)}
-                                    >
-                                      Available
-                                    </Button>
+                                    >Available</Button>
                                     :
                                     <Button
                                       style={{ height: "24px", backgroundColor: '#efdeda', color: '#132411'}}
@@ -80,7 +78,7 @@ function ItemList(item){
                                       color="default"
                                       onClick={() => updateAvailable(item.product_id)}
                                     >
-                                      Not Available
+                                      Unavailable
                                     </Button>
                                     }
                                 </td>

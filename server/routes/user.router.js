@@ -71,7 +71,7 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile/:id', (req, res) => {
   console.log("in profile router");
   const qText = (req.user.user_type === true ? 
     `SELECT * FROM "user_profile" 
@@ -80,7 +80,7 @@ router.get('/profile', (req, res) => {
     `select "user_id", "first_name", "last_name", "phone_number", "email" from "user_profile"
     where "user_id" = $1;`);
 
-    pool.query(qText, [req.user.id])
+    pool.query(qText, [req.params.id])
     .then((response) => {
       console.log('what is this',response.rows);
       res.send(response.rows);
