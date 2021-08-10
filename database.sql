@@ -127,6 +127,17 @@ CREATE TABLE "favorite_connections" (
 
 -- very importents lots of work 
 
+CREATE TABLE "vendors" (
+"id" SERIAL PRIMARY KEY,
+"user_id" INTEGER,
+"farmers_markets_id" INTEGER,
+"location" json NOT NULL,
+"address" VARCHAR(255),
+"availability" VARCHAR(255),
+"description" TEXT,
+"img" TEXT
+);
+
 INSERT INTO "vendor"  ("farmers_markets_id", "location", "address", "availability", "description", "img")
 VALUES 
 ( 1, '{"lat":44.9765, "lng":-93.5084}', 'Great Village Lawn, 850 Lake St N, Wayzata, MN 55391', 'Thursday, 1:30–5:30PM', '','http://www.wayzatafarmersmarket.com/uploads/1/0/1/4/101424422/wayzata-farmersmarket-logo-600_orig.jpg'),

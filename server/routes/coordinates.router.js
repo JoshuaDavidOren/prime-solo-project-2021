@@ -41,7 +41,7 @@ router.post('/updatelocation', (req, res) => {
 router.get('/market', (req, res) => {
 
     pool.query(`
-    SELECT * FROM "vendors"
+    SELECT * FROM "vendor"
     WHERE "farmers_markets_id" > 0;
     `)
     .then((results) => {
