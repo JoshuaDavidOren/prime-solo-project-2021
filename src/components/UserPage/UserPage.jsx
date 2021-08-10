@@ -119,6 +119,7 @@ function UserPage() {
             <section>
               <section>
                 <h2>Groceries For Sale</h2>
+                <img href="%PUBLIC_URL%/FeastLocallogocolor.png"/>
                 {products.map((item) => {
                   return (
                     <CustomItemList
@@ -149,7 +150,7 @@ function UserPage() {
                       style={{ height: "200px", width: "350px" }}
                       id={item.id}
                     >
-                      <Paper className={classes.paper}>
+                      <Paper elevation={3} className={classes.paper}>
                         <br />
                         <table>
                           <tbody>

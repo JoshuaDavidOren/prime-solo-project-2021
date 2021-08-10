@@ -37,7 +37,7 @@ const marketMarkers = useSelector(store => store.marketLocations);
 
 
   const mapStyles = { 
-    marginTop: '5px',      
+    // marginTop: '5px',      
     height: "100vh",
     width: "100%"};
   

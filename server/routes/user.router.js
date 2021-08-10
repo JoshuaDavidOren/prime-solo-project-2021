@@ -47,6 +47,7 @@ router.post('/register', (req, res, next) => {
       `;
       pool.query(qText, [newUserId, firstName, lastName, phoneNumber, email, farmName])
       pool.query(q2Text, [newUserId, 0, {}])
+      console.log('we are at the log');
     })
     
     .then(() => {

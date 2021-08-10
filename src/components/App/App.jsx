@@ -74,7 +74,7 @@ function App() {
           </Route>
 
           <Route exact
-          path="/searchmap">
+          path="/map">
             <MapContainer/>
           </Route>
 

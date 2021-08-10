@@ -15,6 +15,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import Button from "@material-ui/core/Button";
 
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
@@ -26,8 +27,12 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
   root: {
     position: 'fixed',
     bottom: theme.spacing(2),
@@ -47,7 +52,8 @@ export default function TemporaryDrawer(props) {
   const [state, setState] = React.useState({
     top: false
   });
-
+  const history = useHistory();
+  const dispatch = useDispatch();
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -69,8 +75,8 @@ export default function TemporaryDrawer(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
+        {["home", "Map", "About"].map((text, index) => (
+          <ListItem button key={text} onClick={() => history.push(`/${text}`)}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
@@ -120,6 +126,11 @@ ScrollTop.propTypes = {
   window: PropTypes.func,
 };
 
+const logout = () =>{
+  dispatch({ type: 'LOGOUT' });
+  history.push('/home');
+}
+
 
   return (
 
@@ -129,7 +140,7 @@ ScrollTop.propTypes = {
         <CssBaseline />
         <AppBar style={{ backgroundColor: '#bec9bc', color: '#132411' }}>
           <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="open drawer"onClick={toggleDrawer(anchor, true)}>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="open drawer"onClick={toggleDrawer(anchor, true)}>
               <MenuIcon />
             </IconButton >
             <Drawer
@@ -139,7 +150,8 @@ ScrollTop.propTypes = {
             >
               {list(anchor)}
             </Drawer>
-            <Typography variant="h6">Scroll to see button</Typography>
+            <img href="%PUBLIC_URL%/Feast Local logo color.png"/>
+            <Button color="inherit" onClick={() => logout()}>LOGOUT</Button>
           </Toolbar>
         </AppBar>
         <Toolbar id="back-to-top-anchor" />
@@ -149,7 +161,9 @@ ScrollTop.propTypes = {
           </Box>
         </Container>
         <ScrollTop {...props}>
-          <Fab color="secondary" size="small" aria-label="scroll back to top"
+          <Fab color="secondary" size="small"
+           aria-label="scroll back to top"
+           
           style={{backgroundColor: '#497442', color: '#FFFFFF'}}>
             <KeyboardArrowUpIcon />
           </Fab>

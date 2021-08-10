@@ -2,9 +2,8 @@ import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
 function* fetchProfile(action){
-    console.log('WWWWHHHYYYYY',action);
     try{
-    const response = yield axios.get(`/api/user/profile/${action.payload}`);
+    const response = yield axios.get(`/api/user/profile/${action.payload.id}`);
     yield put({type: "SET_PROFILE", payload: response.data});
     } 
     catch(err) {

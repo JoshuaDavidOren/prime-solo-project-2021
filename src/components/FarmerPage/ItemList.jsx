@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Swal from 'sweetalert2'
+
 
 
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
@@ -17,9 +17,9 @@ function ItemList(item){
 
 
             return(  <>
-                <Grid item style={{height: "240px", width: '320px' }} id={item.id}> 
+                <Grid item style={{height: "240px", width: '3px' }} id={item.id}> 
                
-                  <Paper className={classes.paper}>
+                  <Paper elevation={3} className={classes.paper}>
                     
                     
                     <br />
