@@ -105,7 +105,7 @@ console.log('MARKETSSSSSSSS', marketMarkers);
                   {selected.user_id > 0 ? 
                   <a href={`#profile/${selected.user_id}`}>Profile</a>
                   :
-                  <div><a href={`#market/${selected.farmers_market_id}`}>Market Page</a></div>}
+                  <div><a href={`#market/${selected.farmers_markets_id}`}>Market Page</a></div>}
                 </div>
               </InfoWindow>
               )
