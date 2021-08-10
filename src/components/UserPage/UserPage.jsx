@@ -129,6 +129,7 @@ function UserPage() {
                       price={item.asking_price}
                       product_id={item.product_id}
                       quantity={item.quantity}
+                      img={item.img}
                     />
                   );
                 })}

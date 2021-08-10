@@ -17,15 +17,15 @@ function ItemList(item){
 
 
             return(  <>
-                <Grid item style={{height: "240px", width: '3px' }} id={item.id}> 
+                <Grid item style={{height: "240px", width: '320px' }} id={item.id}> 
                
-                  <Paper elevation={3} className={classes.paper}>
+                  <Paper elevation={7} className={classes.paper}>
                     
                     
                     <br />
                     <table>
                         <tbody>
-                            <tr><td><img src={image} width='150px' hight='100px'/></td>
+                            <tr><td><img src={item.img} width='150px' hight='100px'/></td>
                             <td><h4>{item.title}</h4>
                                     <h4>{item.price}</h4><p></p><h4>
                             {item.quantity}</h4></td>

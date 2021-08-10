@@ -30,6 +30,7 @@ router.get('/itemlist', (req, res) => {
     console.log('user data', req.user.id);
     pool.query(qText,[req.user.id])
     .then((response) => {
+      console.log('are pictures?', response.rows);
         res.send(response.rows);
     })
     .catch(err => {

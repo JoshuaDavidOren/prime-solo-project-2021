@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: t
 
 function ItemList(item){
     const classes = useStyles();
-    const image = 'https://image.shutterstock.com/image-vector/cute-strawberry-vector-graphic-icon-260nw-1014794461.jpg'
     const dispatch = useDispatch();
+    console.log('this is it',item);
 
     
     const deleteFromList = (product_id) => {
@@ -54,7 +54,7 @@ function ItemList(item){
                     <br />
                     <table>
                         <tbody>
-                            <tr><td><img src={image} width='150px' hight='100px'/></td>
+                            <tr><td><img src={item.img} width='150px' hight='100px'/></td>
                             <td><h4>{item.title}</h4>
                                     <h4>{item.price}</h4><p></p><h4>
                             {item.quantity}</h4></td>
