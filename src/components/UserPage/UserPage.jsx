@@ -156,8 +156,7 @@ function UserPage() {
                           <tbody>
                             <tr>
                               <td>
-                                <h4>{item.first_name} </h4>
-                                <h4>{(item.last_name)}</h4>
+                                <h4>{item.first_name} {(item.last_name)} </h4>
                               </td>
                               </tr>
                               <tr>
