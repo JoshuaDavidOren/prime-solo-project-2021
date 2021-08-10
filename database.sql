@@ -161,7 +161,11 @@ Kingfield Farmers Market takes place every Sunday from 8:30 am to 1:00 pm. The 2
 (15, '{"lat":44.8981, "lng":-93.2663}', '6335 Portland Ave, Richfield, MN 55423', 'Saturday, 7AM–12PM', 'Held in the Veterans Park Picnic Pavilion and adjacent park space, no line, enter on the East or West side
 Shoppers may pick up and choose their own items, or ask for vendors assistance', 'https://www.richfieldmn.gov/revize_photo_gallery/Department/Parks%20&%20Recreation/Farmers%20Market/ShowImage%20(1).png');
 
-
+CREATE TABLE "farmers_markets" (
+"id" SERIAL PRIMARY KEY,
+"name" VARCHAR(100),
+"link" TEXT
+);
 
 INSERT INTO "farmers_Markets" ("name", "link")
 VALUES 
