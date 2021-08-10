@@ -150,7 +150,7 @@ const logout = () =>{
             >
               {list(anchor)}
             </Drawer>
-            <img href="%PUBLIC_URL%/Feast Local logo color.png"/>
+            {/* <img href="%PUBLIC_URL%/Feast Local logo color.png"/> */}
             <Button color="inherit" onClick={() => logout()}>LOGOUT</Button>
           </Toolbar>
         </AppBar>

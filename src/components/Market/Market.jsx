@@ -12,24 +12,19 @@ useEffect(() => {
   dispatch({type: 'FETCH_MARKET_LOCATIONS'})
 }, []);
   // this component doesn't do much to start, just renders some user reducer info to the DOM
+  const user = useSelector((store) => store.user);
   const marketMarkers = useSelector(store => store.marketLocations);
   const info = marketMarkers.filter(item => item.farmers_markets_id == id)
   console.log('this should match params',marketMarkers);
   console.log('this should match params',info);
   const dispatch = useDispatch();
   const market = info[0];
-  
-
-
-
-
-
 
 
 
 const addToFavorites = () => {
   const id = info.user_id;
-  dispatch({ type: 'ADD_FAVORITE_FARMER', payload: {id: id}})
+  dispatch({ type: 'ADD_FAVORITE_MARKET', payload: {id: id}})
   
 }
 
@@ -44,7 +39,8 @@ const addToFavorites = () => {
           <h4>{market.availability}</h4>
           <a href={market.link}>{market.link}</a>
           </>
-          } { market && <>  
+          } 
+          { market && <>  
           <p>
             {market.description}
           </p>
@@ -52,22 +48,8 @@ const addToFavorites = () => {
           </>}
         </header>
         <center>
-          {/* <section>
-            <h2>Groceries For Sale</h2>
-            {availableProducts.map((item) => {
-              return (
-                <ItemList
-                  id={item.id}
-                  available={item.available}
-                  title={item.item}
-                  price={item.asking_price}
-                  product_id={item.product_id}
-                  quantity={item.quantity}
-                  img={item.img}
-                />
-              );
-            })}
-          </section>
+          
+            
           <section>
             {user.user_type === true ? (
             <div></div>
@@ -82,7 +64,7 @@ const addToFavorites = () => {
                     Add To Favorites
                   </Button>
             )}
-          </section> */}
+          </section>
         </center>
       </section>
     
