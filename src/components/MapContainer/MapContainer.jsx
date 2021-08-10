@@ -9,7 +9,7 @@ const [ currentPosition, setCurrentPosition ] = useState({});
 const dispatch = useDispatch();
 const farmerMarkers = useSelector(store => store.farmerLocations);
 const marketMarkers = useSelector(store => store.marketLocations);
-
+console.log('MARKETSSSSSSSS', marketMarkers);
   useEffect(() => {
     dispatch({type: 'FETCH_FARMER_LOCATIONS'})
     dispatch({type: 'FETCH_MARKET_LOCATIONS'})
@@ -95,11 +95,17 @@ const marketMarkers = useSelector(store => store.marketLocations);
                 <InfoWindow
                 position={selected.location}
                 clickable={true}
+                width='200px' hight='200px'
                 onCloseClick={() => setSelected({})}
               >
                 <div>
-                  <p>{selected.description}</p>
+                  <h5>{selected.name}</h5>
+                  <img src={selected.img } width='100px' hight='100px' alt="" />
+                  <p>{selected.address}</p>
+                  {selected.user_id > 0 ? 
                   <a href={`#profile/${selected.user_id}`}>Profile</a>
+                  :
+                  <div><a href={`#market/${selected.farmers_market_id}`}>Market Page</a></div>}
                 </div>
               </InfoWindow>
               )
