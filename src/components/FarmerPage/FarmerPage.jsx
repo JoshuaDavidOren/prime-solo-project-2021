@@ -23,10 +23,10 @@ useEffect(() => {
   const availableProducts = products.filter(item => item.available === true)
   const dispatch = useDispatch();
   
-console.log('farmers locateions bereakin', farmerMarkers);
+
 const vendorInfo = farmerMarkers.filter(farmer => farmer.user_id == id)
 
-console.log(vendorInfo);
+
 
 
 
@@ -68,6 +68,7 @@ const addToFavorites = () => {
                   price={item.asking_price}
                   product_id={item.product_id}
                   quantity={item.quantity}
+                  img={item.img}
                 />
               );
             })}
@@ -75,7 +76,7 @@ const addToFavorites = () => {
           <section>
             {user.user_type === true ? (
             <div></div>
-            ):(
+            ):( 
             <Button
                     type="submit"
                     style={{ height: "40px" }}
