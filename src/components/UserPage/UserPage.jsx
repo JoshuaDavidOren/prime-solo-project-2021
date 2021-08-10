@@ -44,6 +44,10 @@ function UserPage() {
     history.push(`/profile/${id}`)
   }
 
+  const goToMarketPage = (id) => {
+    history.push(`/market/${id}`)
+  }
+
   const deleteFavoriteFarmer = (id) => {
     Swal.fire({
         title: 'Are you sure?',
@@ -107,11 +111,6 @@ function UserPage() {
           <h4>{info.phone_number}</h4>
           </>
           } 
-          <p>
-            discription of farmer with beautiful words and thinsg obut the farm
-            that has been in there family for one million generations thank you
-            farmer and buyres THANK YOU
-          </p>
         </header>
 
         <div>
@@ -207,12 +206,26 @@ function UserPage() {
                         <table>
                           <tbody>
                             <tr>
+                              
                               <td>
                                 <h4>{item.name} </h4>
                               </td>
                               </tr>
                              <tr>
                               <td>
+                              <Button
+                                  style={{ height: "24px", backgroundColor: '#497442', color: '#FFFFFF'  }}
+                                  variant="contained"
+                                  color="primary"
+                                  onClick={() =>
+                                    goToMarketPage(item.farmers_markets_id)
+                                  }
+                                >
+                                  Market Page
+                                </Button>
+                                </td>
+                                <td></td>
+                                <td>
                                 <Button
                                   style={{ height: "24px", backgroundColor: '#efdeda', color: '#132411' }}
                                   variant="contained"
