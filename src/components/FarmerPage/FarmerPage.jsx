@@ -22,10 +22,8 @@ useEffect(() => {
   const info = profile[0];
   const availableProducts = products.filter(item => item.available === true)
   const dispatch = useDispatch();
-  
-
-const vendorInfo = farmerMarkers.filter(farmer => farmer.user_id == id)
-
+  const vendorInfo = farmerMarkers.filter(farmer => farmer.user_id == id)
+  const farmer = vendorInfo[0];
 
 
 
@@ -49,11 +47,11 @@ const addToFavorites = () => {
           <h4>{info.email}</h4>
           <h4>{info.phone_number}</h4>
           </>
-          } { info && <>  
+          } { farmer && <>  
           <p>
-            {vendorInfo[0].description}
+            {farmer.description}
           </p>
-          <p>{vendorInfo[0].address}</p>
+          <p>{farmer.address}</p>
           </>}
         </header>
         <center>
