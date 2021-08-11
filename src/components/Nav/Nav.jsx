@@ -16,6 +16,7 @@ import Zoom from '@material-ui/core/Zoom';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import Button from "@material-ui/core/Button";
+import HomeIcon from '@material-ui/icons/Home';
 
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
@@ -75,10 +76,10 @@ export default function TemporaryDrawer(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["home", "Map", "About"].map((text, index) => (
+        {["home", "Map", "List", "About",].map((text, index) => (
           <ListItem button key={text} onClick={() => history.push(`/${text}`)}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {index  === 0 ? <HomeIcon /> : <MailIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>

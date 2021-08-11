@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
 
 function AddItemForm() {
-  const profile = useSelector((store) => store.profileReducer);
+ 
   const allProducts = useSelector((store) => store.allProductsReducer);
   const dispatch = useDispatch();
   const [nameProduct, setNameProduct] = React.useState("");

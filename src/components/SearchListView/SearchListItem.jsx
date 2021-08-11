@@ -10,19 +10,21 @@ function SearchItem(item) {
     const classes = useStyles();   
 const listItem = item.item;
 return(
-    <center>
-        <Grid className={classes.grid} item style={{height: "240px", width: '320px' }} id={item.id}>
+    <center class='FarmerPage'>
+        <Grid className={classes.grid} item style={{height: "320px", width: '320px' }} id={item.id}>
         
                       <Paper  elevation={7} className={classes.paper}>
         
                             
                         <table>
                         <tbody>
+                          <tr><td><img src={listItem.img} height= "100px" width= '100px' background-color='#8cb285'  /></td>
+                          <td><h3>{listItem.name}</h3></td>
+                          </tr>
                             <tr>
                                 {/* <td><img src={image} width='150px' hight='100px'/></td> */}
                             <td><h4>{listItem.address}</h4>
-                                    <h4>{listItem.availability}</h4><p></p><h4>
-                            {listItem.description}</h4></td>
+                                    <h4>{listItem.availability}</h4><p></p></td>
                             </tr>
         
                         </tbody>

@@ -205,9 +205,13 @@ function UserPage() {
                         <table>
                           <tbody>
                             <tr>
-                              
                               <td>
-                                <h4>{item.name} </h4>
+                                <h3>{item.name} </h3>
+                              </td>
+                              </tr>
+                              <tr>
+                              <td>
+                                <h3>{item.availability} </h3>
                               </td>
                               </tr>
                              <tr>

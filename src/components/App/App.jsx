@@ -76,7 +76,7 @@ function App() {
           </ProtectedRoute>
 
           <Route exact
-          path="/searchlist">
+          path="/list">
             <SearchListView />
           </Route>
 
