@@ -114,6 +114,7 @@ function AddItemForm() {
         label="Image URL"
         variant="outlined"
         onChange={(evt) => setNewImg(evt.target.value)}
+        style = {{width: 280}}
       />
     </section>
   );

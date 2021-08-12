@@ -118,7 +118,6 @@ function UserPage() {
             <section>
               <section>
                 <h2>Groceries For Sale</h2>
-                <img href="%PUBLIC_URL%/FeastLocallogocolor.png"/>
                 {products.map((item) => {
                   return (
                     <CustomItemList
