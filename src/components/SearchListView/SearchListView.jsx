@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FarmerPage from '../FarmerPage/FarmerPage';
 import SearchItem from './SearchListItem';
 
 function SearchListView(){

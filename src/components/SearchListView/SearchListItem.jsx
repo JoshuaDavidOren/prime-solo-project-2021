@@ -11,7 +11,7 @@ function SearchItem(item) {
 const listItem = item.item;
 return(
     <center class='FarmerPage'>
-        <Grid className={classes.grid} item style={{height: "320px", width: '320px' }} id={item.id}>
+        <Grid className={classes.grid} item style={{height: "280px", width: '320px' }} id={item.id}>
         
                       <Paper  elevation={7} className={classes.paper}>
         
