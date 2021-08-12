@@ -16,6 +16,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import Button from "@material-ui/core/Button";
 import HomeIcon from '@material-ui/icons/Home';
+import MapIcon from '@material-ui/icons/Map';
+import ListIcon from '@material-ui/icons/List';
+import InfoIcon from '@material-ui/icons/Info';
 
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
@@ -78,7 +81,8 @@ export default function TemporaryDrawer(props) {
         {["home", "Map", "List", "About",].map((text, index) => (
           <ListItem button key={text} onClick={() => history.push(`/${text}`)}>
             <ListItemIcon>
-              {index  === 0 ? <HomeIcon /> : <MailIcon />}
+              {index  === 0 ? <HomeIcon /> : <MapIcon />}
+              <ListIcon/> <InfoIcon/>
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -91,9 +95,6 @@ export default function TemporaryDrawer(props) {
 function ScrollTop(props) {
   const { children, window } = props;
   const classes = useStyles();
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
@@ -119,10 +120,6 @@ function ScrollTop(props) {
 
 ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 
@@ -175,41 +172,3 @@ const logout = () =>{
 }
 </div>
   );}
-
-
-// function Nav() {
-//   const user = useSelector((store) => store.user);
-//   const dispatch = useDispatch();
-
-//   let loginLinkData = {
-//     path: '/login',
-//     text: 'Login / Register',
-//   };
-
-//   if (user.id != null) {
-//     loginLinkData.path = '/user';
-//     loginLinkData.text = 'Home';
-//   }
-
-//   return (
-//     <div className="navbar">
-//       <div class="dropdown">
-//         <button class="dropbtn">Menu
-//           <i class="fa fa-caret-down"></i>
-//         </button>
-    
-//         <div class="dropdown-content">
-//           <a href="#/home">Home</a>
-//           <a href="#searchlist">List</a>
-//           <a href="#searchmap">Map</a>
-//           <a href="#about">About</a>
-//           <a href="#/home"
-//             onClick={() => dispatch({ type: 'LOGOUT' })}
-//             >Log Out</a>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Nav;
