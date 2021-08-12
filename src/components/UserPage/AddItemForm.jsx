@@ -12,6 +12,7 @@ function AddItemForm() {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [newProduct, setNewProduct] = useState("");
+  const [newImg, setNewImg] = useState("");
 
   const list = allProducts.map((item) => {
     return item.item;
@@ -32,13 +33,16 @@ function AddItemForm() {
     setQuantity("");
   };
 
+  
+  
   const addNewProduct = () => {
     event.preventDefault();
     dispatch({
       type: "ADD_NEW_PRODUCT",
-      payload: { newProduct: newProduct },
+      payload: { newProduct: newProduct, newImg: newImg },
     });
     setNewProduct("");
+    setNewImg("");
   };
   return (
     <section>
@@ -103,6 +107,14 @@ function AddItemForm() {
       >
         ADD
       </Button>
+     
+      <TextField
+        id="outlined-basic"
+        value={newImg}
+        label="Image URL"
+        variant="outlined"
+        onChange={(evt) => setNewImg(evt.target.value)}
+      />
     </section>
   );
 }

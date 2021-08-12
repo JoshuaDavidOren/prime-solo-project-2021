@@ -9,6 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Swal from 'sweetalert2';
 import { useHistory, useParams } from "react-router-dom";
+import Logo from "./Logo.png";
 
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
@@ -104,7 +105,6 @@ function UserPage() {
     <center >
       <section class='UserPage'>
         <header>
-          <div className="profile-image"></div>
           { info && <> 
           <h3>{info.page_title}</h3>
           <h4>{info.email}</h4>
