@@ -1,8 +1,11 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.get('/farmer/:id', (req, res) => {
+router.get('/farmer/:id',rejectUnauthenticated, (req, res) => {
   console.log("in profile router");
   const qText = `
     select "user_id", "first_name", "last_name", "phone_number", "email", "page_title" from "user_profile"
