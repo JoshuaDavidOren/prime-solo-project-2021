@@ -10,7 +10,7 @@ router.get('/item/:id',rejectUnauthenticated, (req, res) => {
   const qText = `
     SELECT * FROM "farmer_products" 
     JOIN "products" on "farmer_products".product_id = "products".id 
-    WHERE "user_id" = $1
+    WHERE "user_id" = $1 ORDER BY "farmer_products".id ASC 
     ;`;
 
   pool.query(qText,[req.params.id])
@@ -26,9 +26,9 @@ router.get('/item/:id',rejectUnauthenticated, (req, res) => {
 router.get('/itemlist',rejectUnauthenticated, (req, res) => {
 
   const qText = `
-    SELECT * FROM "farmer_products" 
-    JOIN "products" on "farmer_products".product_id = "products".id 
-    WHERE "user_id" = $1
+  SELECT * FROM "farmer_products" 
+  JOIN "products" on "farmer_products".product_id = "products".id 
+  WHERE "user_id" = $1 ORDER BY "farmer_products".id ASC 
     ;`;
     pool.query(qText,[req.user.id])
     .then((response) => {
