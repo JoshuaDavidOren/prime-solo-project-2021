@@ -30,6 +30,15 @@ function* addFavoriteFarmer(action){
         console.log('Error POSTing to database', error);
     }
 }
+function* addFavoriteMarket(action){
+    try{
+        yield axios.post( '/api/favorite/market', action.payload);
+        yield put({type: 'GET_FAVORITE_MARKET_DATA'});
+    } 
+    catch(error) {
+        console.log('Error POSTing to database', error);
+    }
+}
 
 function* deleteFavoriteFarmer(action){
     try{
@@ -56,6 +65,7 @@ function* favoriteSaga(){
     yield takeEvery('GET_FAVORITE_FARMER_DATA', fetchFavoriteFarmer); 
     yield takeEvery('GET_FAVORITE_MARKET_DATA', fetchFavoriteMarket);
     yield takeEvery('ADD_FAVORITE_FARMER', addFavoriteFarmer);
+    yield takeEvery('ADD_FAVORITE_MARKET', addFavoriteMarket);
     yield takeEvery('DELETE_FROM_FAVORITES_FARMER', deleteFavoriteFarmer)
     yield takeEvery('DELETE_FROM_FAVORITES_MARKET', deleteFavoriteMarket)
 }

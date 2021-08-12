@@ -1,10 +1,9 @@
 import React from 'react';
 import './Nav.css';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -16,6 +15,7 @@ import Zoom from '@material-ui/core/Zoom';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import Button from "@material-ui/core/Button";
+import HomeIcon from '@material-ui/icons/Home';
 
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
@@ -28,7 +28,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { useHistory } from 'react-router-dom';
-
+import Logo from "../UserPage/Logo.png";
 const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
@@ -75,10 +75,10 @@ export default function TemporaryDrawer(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["home", "Map", "About"].map((text, index) => (
+        {["home", "Map", "List", "About",].map((text, index) => (
           <ListItem button key={text} onClick={() => history.push(`/${text}`)}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {index  === 0 ? <HomeIcon /> : <MailIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -150,7 +150,7 @@ const logout = () =>{
             >
               {list(anchor)}
             </Drawer>
-            <img href="%PUBLIC_URL%/Feast Local logo color.png"/>
+            <img src={Logo} height='40px'/>
             <Button color="inherit" onClick={() => logout()}>LOGOUT</Button>
           </Toolbar>
         </AppBar>

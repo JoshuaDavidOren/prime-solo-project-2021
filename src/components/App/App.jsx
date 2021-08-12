@@ -26,6 +26,7 @@ import FarmerPage from '../FarmerPage/FarmerPage';
 import SearchListView from '../SearchListView/SearchListView';
 import MapContainer from '../MapContainer/MapContainer';
 import AddItemForm from '../AddItemForm/AddItemForm';
+import Market from '../Market/Market';
 
 function App() {
   const user = useSelector((store) => store.user);
@@ -68,8 +69,14 @@ function App() {
             <FarmerPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows FarmerPage else shows LoginPage
+            exact path="/market/:id">
+            <Market />
+          </ProtectedRoute>
+
           <Route exact
-          path="/searchlist">
+          path="/list">
             <SearchListView />
           </Route>
 

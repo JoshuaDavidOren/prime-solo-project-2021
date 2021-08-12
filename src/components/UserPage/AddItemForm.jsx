@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
 
 function AddItemForm() {
-  const profile = useSelector((store) => store.profileReducer);
+ 
   const allProducts = useSelector((store) => store.allProductsReducer);
   const dispatch = useDispatch();
   const [nameProduct, setNameProduct] = React.useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [newProduct, setNewProduct] = useState("");
+  const [newImg, setNewImg] = useState("");
 
   const list = allProducts.map((item) => {
     return item.item;
@@ -32,13 +33,16 @@ function AddItemForm() {
     setQuantity("");
   };
 
+  
+  
   const addNewProduct = () => {
     event.preventDefault();
     dispatch({
       type: "ADD_NEW_PRODUCT",
-      payload: { newProduct: newProduct },
+      payload: { newProduct: newProduct, newImg: newImg },
     });
     setNewProduct("");
+    setNewImg("");
   };
   return (
     <section>
@@ -103,6 +107,15 @@ function AddItemForm() {
       >
         ADD
       </Button>
+     
+      <TextField
+        id="outlined-basic"
+        value={newImg}
+        label="Image URL"
+        variant="outlined"
+        onChange={(evt) => setNewImg(evt.target.value)}
+        style = {{width: 280}}
+      />
     </section>
   );
 }

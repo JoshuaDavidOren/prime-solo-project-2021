@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.get("/market", (req, res) => {
   const qText = `
-  SELECT "farmers_market".name, "farmers_market".id  FROM "favorite_connections"
-  JOIN "farmers_market" on "favorite_connections".farmers_markets_id = "farmers_market".id
+  SELECT * FROM "favorite_connections"
+  JOIN "farmers_markets" on "favorite_connections".farmers_markets_id = "farmers_markets".id
   WHERE "user_type_id" = $1; 
   `;
   pool
@@ -55,8 +55,9 @@ router.post("/farmer", (req, res) => {
 });
 
 router.post("/market", (req, res) => {
+  console.log('in add market favorits yo',req.body.id);
   const qText = `
-        INSERT INTO "favorite_connections" ("user_type_id", "farmer_market_id")
+        INSERT INTO "favorite_connections" ("user_type_id", "farmers_markets_id")
         VALUES ($1, $2) 
         ;`;
   pool

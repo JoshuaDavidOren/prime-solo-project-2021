@@ -9,3 +9,4 @@ const marketLocations = (state = [], action) => {
 }
 
 export default marketLocations;
+

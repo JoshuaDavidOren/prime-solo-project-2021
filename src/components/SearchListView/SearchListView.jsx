@@ -14,7 +14,7 @@ const markets = useSelector(store => store.marketLocations);
 
     return(
         
-        <section>
+        <section class='FarmerPage' >
             <h2>Farmers</h2>
              {
                 farmers.map(item => {
@@ -22,7 +22,7 @@ const markets = useSelector(store => store.marketLocations);
             <SearchItem  item={item}/>
             )
         })}
-        <h2>Markets</h2>
+        <h2 class='FarmerPage'>Markets</h2>
         {
             
                 markets.map(item => {

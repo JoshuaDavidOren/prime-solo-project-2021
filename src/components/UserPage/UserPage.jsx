@@ -9,6 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Swal from 'sweetalert2';
 import { useHistory, useParams } from "react-router-dom";
+import Logo from "./Logo.png";
 
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
@@ -42,6 +43,10 @@ function UserPage() {
     dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: id });
     dispatch({ type: 'GET_PRODUCT_DATA_FARMER', payload: id });
     history.push(`/profile/${id}`)
+  }
+
+  const goToMarketPage = (id) => {
+    history.push(`/market/${id}`)
   }
 
   const deleteFavoriteFarmer = (id) => {
@@ -100,18 +105,12 @@ function UserPage() {
     <center >
       <section class='UserPage'>
         <header>
-          <div className="profile-image"></div>
           { info && <> 
           <h3>{info.page_title}</h3>
           <h4>{info.email}</h4>
           <h4>{info.phone_number}</h4>
           </>
           } 
-          <p>
-            discription of farmer with beautiful words and thinsg obut the farm
-            that has been in there family for one million generations thank you
-            farmer and buyres THANK YOU
-          </p>
         </header>
 
         <div>
@@ -119,7 +118,6 @@ function UserPage() {
             <section>
               <section>
                 <h2>Groceries For Sale</h2>
-                <img href="%PUBLIC_URL%/FeastLocallogocolor.png"/>
                 {products.map((item) => {
                   return (
                     <CustomItemList
@@ -157,8 +155,7 @@ function UserPage() {
                           <tbody>
                             <tr>
                               <td>
-                                <h4>{item.first_name} </h4>
-                                <h4>{(item.last_name)}</h4>
+                                <h4>{item.first_name} {(item.last_name)} </h4>
                               </td>
                               </tr>
                               <tr>
@@ -208,11 +205,29 @@ function UserPage() {
                           <tbody>
                             <tr>
                               <td>
-                                <h4>{item.name} </h4>
+                                <h3>{item.name} </h3>
+                              </td>
+                              </tr>
+                              <tr>
+                              <td>
+                                <h3>{item.availability} </h3>
                               </td>
                               </tr>
                              <tr>
                               <td>
+                              <Button
+                                  style={{ height: "24px", backgroundColor: '#497442', color: '#FFFFFF'  }}
+                                  variant="contained"
+                                  color="primary"
+                                  onClick={() =>
+                                    goToMarketPage(item.farmers_markets_id)
+                                  }
+                                >
+                                  Market Page
+                                </Button>
+                                </td>
+                                <td></td>
+                                <td>
                                 <Button
                                   style={{ height: "24px", backgroundColor: '#efdeda', color: '#132411' }}
                                   variant="contained"

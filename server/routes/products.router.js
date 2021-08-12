@@ -27,10 +27,8 @@ router.get('/itemlist', (req, res) => {
     JOIN "products" on "farmer_products".product_id = "products".id 
     WHERE "user_id" = $1
     ;`;
-    console.log('user data', req.user.id);
     pool.query(qText,[req.user.id])
     .then((response) => {
-      console.log('are pictures?', response.rows);
         res.send(response.rows);
     })
     .catch(err => {
@@ -75,11 +73,11 @@ VALUES ( $1, $2, $3, $4, true)
 // create new product for products table
 router.post('/product', (req, res) => {
 const qText = `
-INSERT INTO "products" ("item")
-VALUES ($1) 
+INSERT INTO "products" ("item", "img")
+VALUES ($1, $2) 
 ;`;
 console.log(req.body);
-pool.query(qText,[req.body.newProduct])
+pool.query(qText,[req.body.newProduct, req.body.newImg])
 .then(() => {
     console.log('INSERT to "products" successful');
     res.sendStatus(201);

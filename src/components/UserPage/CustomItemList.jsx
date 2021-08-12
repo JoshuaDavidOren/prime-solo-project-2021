@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: t
 function ItemList(item){
     const classes = useStyles();
     const dispatch = useDispatch();
-    console.log('this is it',item);
 
     
     const deleteFromList = (product_id) => {
