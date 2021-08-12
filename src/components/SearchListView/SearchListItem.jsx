@@ -18,7 +18,7 @@ return(
                             
                         <table>
                         <tbody>
-                          <tr><td><img src={listItem.img} height= "100px" width= '100px' background-color='#8cb285'  /></td>
+                          <tr>
                           <td><h3>{listItem.name}</h3></td>
                           </tr>
                             <tr>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import FarmerPage from '../FarmerPage/FarmerPage';
 import SearchItem from './SearchListItem';
 
 function SearchListView(){
@@ -14,7 +15,7 @@ const markets = useSelector(store => store.marketLocations);
 
     return(
         
-        <section >
+        <section class='FarmerPage' >
             <h2>Farmers</h2>
              {
                 farmers.map(item => {
@@ -22,7 +23,7 @@ const markets = useSelector(store => store.marketLocations);
             <SearchItem  item={item}/>
             )
         })}
-        <h2>Markets</h2>
+        <h2 class='FarmerPage'>Markets</h2>
         {
             
                 markets.map(item => {
