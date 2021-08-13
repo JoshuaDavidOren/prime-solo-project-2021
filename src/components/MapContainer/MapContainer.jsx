@@ -14,7 +14,7 @@ function MapContainer() {
   const dispatch = useDispatch();
   const farmerMarkers = useSelector((store) => store.farmerLocations);
   const marketMarkers = useSelector((store) => store.marketLocations);
-  console.log("MARKETSSSSSSSS", farmerMarkers);
+  console.log("farmers", farmerMarkers);
   useEffect(() => {
     dispatch({ type: "FETCH_FARMER_LOCATIONS" });
     dispatch({ type: "FETCH_MARKET_LOCATIONS" });
@@ -60,7 +60,7 @@ function MapContainer() {
           zoom={11}
           center={currentPosition.lat ? currentPosition : defaultCenter}
         >
-          {farmerMarkers.map((item) => {
+          { farmerMarkers && <> {farmerMarkers.map((item) => {
             return (
               <Marker
                 key={item.id}
@@ -68,8 +68,8 @@ function MapContainer() {
                 onClick={() => onSelect(item)}
               />
             );
-          })}
-          {marketMarkers.map((item) => {
+          })}</>}
+          {marketMarkers && <> {marketMarkers.map((item) => {
             return (
               <Marker
                 icon={
@@ -85,7 +85,7 @@ function MapContainer() {
                 onClick={() => onSelect(item)}
               />
             );
-          })}
+          })}</>}
 
           {selected.location && (
             <InfoWindow
