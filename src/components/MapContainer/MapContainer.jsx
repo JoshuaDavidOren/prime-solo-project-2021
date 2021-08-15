@@ -35,6 +35,7 @@ function MapContainer() {
 
   const onSelect = (item) => {
     setSelected(item);
+    setCurrentPosition(item.location);
     dispatch({ type: "GET_PROFILE_DATA_FARMER", payload: item.user_id });
     dispatch({ type: "GET_PRODUCT_DATA_FARMER", payload: item.user_id });
   };
@@ -64,6 +65,7 @@ function MapContainer() {
             return (
               <Marker
                 key={item.id}
+
                 position={item.location}
                 onClick={() => onSelect(item)}
               />
@@ -96,7 +98,7 @@ function MapContainer() {
               onCloseClick={() => setSelected({})}
             >
               <div>
-                <img src={selected.img} width="100px" hight="100px" alt="" />
+                
 
                 {selected.user_id > 0 ? (
                   <div>
@@ -107,6 +109,7 @@ function MapContainer() {
                   </div>
                 ) : (
                   <div>
+                    <img src={selected.img} width="100px" hight="100px" alt="" />
                     <h5>{selected.name}</h5>
                     <a href={`#market/${selected.farmers_markets_id}`}>
                       Market Page
