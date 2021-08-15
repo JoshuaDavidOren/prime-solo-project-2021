@@ -1,8 +1,11 @@
 const express = require("express");
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require("../modules/pool");
 const router = express.Router();
 
-router.get("/market", (req, res) => {
+router.get("/market",rejectUnauthenticated, (req, res) => {
   const qText = `
   SELECT * FROM "favorite_connections"
   JOIN "farmers_markets" on "favorite_connections".farmers_markets_id = "farmers_markets".id
@@ -19,7 +22,7 @@ router.get("/market", (req, res) => {
     });
 });
 
-router.get("/farmer", (req, res) => {
+router.get("/farmer",rejectUnauthenticated, (req, res) => {
   const qText = `
   SELECT * FROM "favorite_connections"
   JOIN "user_profile" on "favorite_connections".farmer_type_id = "user_profile".user_id
@@ -36,7 +39,7 @@ router.get("/farmer", (req, res) => {
     });
 });
 
-router.post("/farmer", (req, res) => {
+router.post("/farmer",rejectUnauthenticated, (req, res) => {
   console.log('favorite id', req.body);
   const qText = `
     INSERT INTO "favorite_connections" ("user_type_id", "farmer_type_id")
@@ -54,7 +57,7 @@ router.post("/farmer", (req, res) => {
     });
 });
 
-router.post("/market", (req, res) => {
+router.post("/market",rejectUnauthenticated, (req, res) => {
   console.log('in add market favorits yo',req.body.id);
   const qText = `
         INSERT INTO "favorite_connections" ("user_type_id", "farmers_markets_id")
@@ -72,7 +75,7 @@ router.post("/market", (req, res) => {
     });
 });
 
-router.delete("/farmer/:id", (req, res) => {
+router.delete("/farmer/:id",rejectUnauthenticated, (req, res) => {
   const farmerId = req.params.id;
   const qText = `
             DELETE FROM "favorite_connections" 
@@ -90,7 +93,7 @@ router.delete("/farmer/:id", (req, res) => {
     });
 });
 
-router.delete("/market/:id", (req, res) => {
+router.delete("/market/:id",rejectUnauthenticated, (req, res) => {
   const marketId = req.params.id;
   const qText = `
             DELETE FROM "favorite_connections" 

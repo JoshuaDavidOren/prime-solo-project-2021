@@ -40,16 +40,16 @@ return (
         </header>
         <TextField 
         value={address} type="text" placeholder='street' 
-        onChange={(evt) => setAddress(evt.target.value)} required />
+        onChange={(evt) => setAddress('215 4th St')} required />
         <TextField 
         value={city} type="text" placeholder='city'  
-        onChange={(evt) => setCity(evt.target.value)} required />
+        onChange={(evt) => setCity('Minneapolis')} required />
         <TextField 
         value={state} type="text" placeholder='state' 
-        onChange={(evt) => setState(evt.target.value)} required />
+        onChange={(evt) => setState('MN')} required />
         <TextField 
         value={zip} type="text" placeholder='zip'  
-        onChange={(evt) => setZip(evt.target.value)} required />
+        onChange={(evt) => setZip('55401')} required />
         <div></div>
         <br />
         <TextField
@@ -59,7 +59,7 @@ return (
           placeholder="What days and times will you be here?"
           multiline
           variant="outlined"
-          onChange={(evt) => setAvailability(evt.target.value)} required
+          onChange={(evt) => setAvailability('Mon - Fri 3PM-5PM')} required
         />
         <div></div>
         <br />
@@ -71,7 +71,7 @@ return (
           value={description}
           placeholder='Quick Overview of yourself and products'
           variant="outlined"
-          onChange={(evt) => setDescription(evt.target.value)} required
+          onChange={(evt) => setDescription('Stop by my stand for some delicious produce, bread, butter and fresh chicken.')} required
         />
         <div></div>
         <br/>

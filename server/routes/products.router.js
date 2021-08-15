@@ -1,13 +1,16 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // shows user viewing farmer profile the farmers list of products
-router.get('/item/:id', (req, res) => {
+router.get('/item/:id',rejectUnauthenticated, (req, res) => {
   const qText = `
     SELECT * FROM "farmer_products" 
     JOIN "products" on "farmer_products".product_id = "products".id 
-    WHERE "user_id" = $1
+    WHERE "user_id" = $1 ORDER BY "farmer_products".id ASC 
     ;`;
 
   pool.query(qText,[req.params.id])
@@ -20,12 +23,12 @@ router.get('/item/:id', (req, res) => {
   })
 });
 // shows farmers their list of items
-router.get('/itemlist', (req, res) => {
+router.get('/itemlist',rejectUnauthenticated, (req, res) => {
 
   const qText = `
-    SELECT * FROM "farmer_products" 
-    JOIN "products" on "farmer_products".product_id = "products".id 
-    WHERE "user_id" = $1
+  SELECT * FROM "farmer_products" 
+  JOIN "products" on "farmer_products".product_id = "products".id 
+  WHERE "user_id" = $1 ORDER BY "farmer_products".id ASC 
     ;`;
     pool.query(qText,[req.user.id])
     .then((response) => {
@@ -37,7 +40,7 @@ router.get('/itemlist', (req, res) => {
     })
   });
 // shows farmers all products for easy selction to add to their list
-  router.get('/listproducts', (req, res) => {
+  router.get('/listproducts',rejectUnauthenticated, (req, res) => {
     const qText = `
     SELECT * FROM "products"; 
     `;
@@ -51,7 +54,7 @@ router.get('/itemlist', (req, res) => {
     })
   });
 // adds product to farmers personal list
-  router.post('/addproduct', (req, res) => {
+  router.post('/addproduct',rejectUnauthenticated, (req, res) => {
     const product = req.body.productId
     const price = req.body.price
     const quantity = req.body.quantity
@@ -71,7 +74,7 @@ VALUES ( $1, $2, $3, $4, true)
     });
 
 // create new product for products table
-router.post('/product', (req, res) => {
+router.post('/product',rejectUnauthenticated, (req, res) => {
 const qText = `
 INSERT INTO "products" ("item", "img")
 VALUES ($1, $2) 
@@ -89,7 +92,7 @@ pool.query(qText,[req.body.newProduct, req.body.newImg])
 });
 
 //updates farmers item from avil-!avil
-router.put('/item/:id', (req, res) => {
+router.put('/item/:id',rejectUnauthenticated, (req, res) => {
     const product = req.params.id
     const qText = `
     UPDATE "farmer_products" 
@@ -107,7 +110,7 @@ router.put('/item/:id', (req, res) => {
       });
     });
     // deletes item from farmers list
-    router.delete('/delete/:id', (req, res) => {
+    router.delete('/delete/:id',rejectUnauthenticated, (req, res) => {
         const product = req.params.id
         const qText = `
         DELETE FROM "farmer_products" 

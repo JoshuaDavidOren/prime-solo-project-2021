@@ -5,7 +5,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
 
 function AddItemForm() {
- 
   const allProducts = useSelector((store) => store.allProductsReducer);
   const dispatch = useDispatch();
   const [nameProduct, setNameProduct] = React.useState("");
@@ -33,8 +32,6 @@ function AddItemForm() {
     setQuantity("");
   };
 
-  
-  
   const addNewProduct = () => {
     event.preventDefault();
     dispatch({
@@ -81,7 +78,11 @@ function AddItemForm() {
         <br />
         <Button
           type="submit"
-          style={{ height: "40px", backgroundColor: '#bec9bc', color: '#132411' }}
+          style={{
+            height: "40px",
+            backgroundColor: "#bec9bc",
+            color: "#132411",
+          }}
           variant="contained"
           color="primary"
           onClick={() => addItem()}
@@ -100,21 +101,21 @@ function AddItemForm() {
       />
       <Button
         type="submit"
-        style={{ height: "57px", backgroundColor: '#bec9bc', color: '#132411'  }}
+        style={{ height: "57px", backgroundColor: "#bec9bc", color: "#132411" }}
         variant="contained"
         color="primary"
         onClick={() => addNewProduct()}
       >
         ADD
       </Button>
-     
+
       <TextField
         id="outlined-basic"
         value={newImg}
         label="Image URL"
         variant="outlined"
         onChange={(evt) => setNewImg(evt.target.value)}
-        style = {{width: 280}}
+        style={{ width: 280 }}
       />
     </section>
   );
