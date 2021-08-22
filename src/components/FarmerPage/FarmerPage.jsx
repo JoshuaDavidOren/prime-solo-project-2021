@@ -41,7 +41,7 @@ const addToFavorites = () => {
       <section class='FarmerPage'>
         <header class="p-head">
           <h1>FARMER</h1>
-          <div className="profile-image"></div>
+          <div className="profile-image"> <img src="https://cdn2.iconfinder.com/data/icons/basic-ui-set/100/Admin-512.png" alt="" /></div>
           { info && <> 
           <h3>{info.page_title}</h3>
           <h4>{info.email}</h4>
