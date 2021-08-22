@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ItemList() {
-  const classes = useStyles();
   const dispatch = useDispatch();
+  const classes = useStyles();
   const products = useSelector((store) => store.productReducer);
 
   const deleteFromList = (product_id) => {

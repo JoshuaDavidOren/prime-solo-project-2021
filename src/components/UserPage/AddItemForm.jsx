@@ -5,8 +5,8 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
 
 function AddItemForm() {
-  const allProducts = useSelector((store) => store.allProductsReducer);
   const dispatch = useDispatch();
+  const allProducts = useSelector((store) => store.allProductsReducer);
   const [nameProduct, setNameProduct] = React.useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");

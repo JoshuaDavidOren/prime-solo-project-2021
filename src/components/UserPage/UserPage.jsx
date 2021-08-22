@@ -4,7 +4,7 @@ import CustomItemList from "./CustomItemList";
 import AddLocationForm from "./AddLocationForm";
 import AddItemForm from "./AddItemForm";
 import { useParams } from "react-router-dom";
-import NormalUser from "./BaseUser";
+import NormalUser from "./NormalUser";
 
 function UserPage() {
   const { id } = useParams();
