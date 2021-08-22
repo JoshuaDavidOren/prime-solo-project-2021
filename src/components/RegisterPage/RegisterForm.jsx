@@ -1,6 +1,3 @@
-// MAKE THIS INTO CREATE PROFILE PAGE ALSO
-// ON CHECK FOR FARMER HAVE ADDITIONAL INPUTS
-
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
