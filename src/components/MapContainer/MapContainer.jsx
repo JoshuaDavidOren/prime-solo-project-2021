@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, InfoWindow} from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
 require("dotenv").config();
 
 function MapContainer() {
+  const dispatch = useDispatch();
   const [selected, setSelected] = useState({});
   const [currentPosition, setCurrentPosition] = useState({});
-  const dispatch = useDispatch();
   const farmerMarkers = useSelector((store) => store.farmerLocations);
   const marketMarkers = useSelector((store) => store.marketLocations);
   console.log("farmers", farmerMarkers);
@@ -41,7 +36,6 @@ function MapContainer() {
   };
 
   const mapStyles = {
-    // marginTop: '5px',
     height: "100vh",
     width: "100%",
   };
@@ -88,7 +82,6 @@ function MapContainer() {
               />
             );
           })}</>}
-
           {selected.location && (
             <InfoWindow
               position={selected.location}
@@ -98,8 +91,6 @@ function MapContainer() {
               onCloseClick={() => setSelected({})}
             >
               <div>
-                
-
                 {selected.user_id > 0 ? (
                   <div>
                     <h5>

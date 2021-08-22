@@ -1,44 +1,31 @@
-import React, { useEffect } from 'react';
-import {
-  HashRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-  useParams,
-  useHistory,
-} from 'react-router-dom';
-
-import { useDispatch, useSelector } from 'react-redux';
-
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-
-import './App.css';
-import FarmerPage from '../FarmerPage/FarmerPage';
-import SearchListView from '../SearchListView/SearchListView';
-import MapContainer from '../MapContainer/MapContainer';
-import AddItemForm from '../AddItemForm/AddItemForm';
-import Market from '../Market/Market';
+import React, { useEffect } from "react";
+import { HashRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import AboutPage from "../AboutPage/AboutPage";
+import UserPage from "../UserPage/UserPage";
+import InfoPage from "../InfoPage/InfoPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import FarmerPage from "../FarmerPage/FarmerPage";
+import SearchListView from "../SearchListView/SearchListView";
+import MapContainer from "../MapContainer/MapContainer";
+import Market from "../Market/Market";
+import "./App.css";
 
 function App() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
- 
+
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
     <Router>
-      <div class='App'>
+      <div class="App">
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -59,30 +46,34 @@ function App() {
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
-            exact path="/user/:id" >
+            exact
+            path="/user/:id"
+          >
             <UserPage />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows FarmerPage else shows LoginPage
-            exact path="/profile/:id">
+            exact
+            path="/profile/:id"
+          >
             <FarmerPage />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows FarmerPage else shows LoginPage
-            exact path="/market/:id">
+            exact
+            path="/market/:id"
+          >
             <Market />
           </ProtectedRoute>
 
-          <Route exact
-          path="/list">
+          <Route exact path="/list">
             <SearchListView />
           </Route>
 
-          <Route exact
-          path="/map">
-            <MapContainer/>
+          <Route exact path="/map">
+            <MapContainer />
           </Route>
 
           <ProtectedRoute
@@ -91,14 +82,6 @@ function App() {
             path="/info"
           >
             <InfoPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/additem"
-          >
-            <AddItemForm />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

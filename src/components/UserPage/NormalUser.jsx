@@ -5,18 +5,16 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Swal from 'sweetalert2';
-import { useHistory, useParams } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({root: {flexGrow: 1},paper: {padding: theme.spacing(2), color: theme.palette.text.secondary}}));
 
 function NormalUser() {
+    const dispatch = useDispatch();
     const favMarket = useSelector((store) => store.favoriteMarketReducer);
     const favFarmer = useSelector((store) => store.favoriteFarmerReducer);
     const classes = useStyles();
     const history = useHistory();
-    const dispatch = useDispatch();
-
 
     const goToFarmerProfile = (id) => {
         dispatch({ type: 'GET_PROFILE_DATA_FARMER', payload: id });
@@ -41,11 +39,9 @@ function NormalUser() {
               Swal.fire(
                 'Deleted!',
                 'Your favorite has been removed.',
-                'success'
-              )
+                'success')
               deleteFromFavoriteFarmer(id);
-            }
-            
+            } 
           })
         }
     
@@ -66,21 +62,16 @@ function NormalUser() {
                 Swal.fire(
                   'Deleted!',
                   'Your favorite has been removed.',
-                  'success'
-                )
+                  'success')
                 deleteFromFavoriteMarket(id);
               }
-              
             })
           }
-    
-      
     
       const deleteFromFavoriteMarket = (id) => {
         dispatch({type: 'DELETE_FROM_FAVORITES_MARKET', payload: {id: id}})
       }
     
-
     return (
         <section>
             <div>
@@ -193,7 +184,6 @@ function NormalUser() {
                 })}
               </section>
             </div>
-
         </section>
     )
 }

@@ -4,14 +4,13 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 function AddLocationForm() {
+  const dispatch = useDispatch()
   const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zip, setZip] = useState('')
   const [description, setDescription] = useState('')
   const [availability, setAvailability] = useState('');
-
-  const dispatch = useDispatch()
 
   const handleSubmit = (event) => {
     event.preventDefault()
