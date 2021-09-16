@@ -97,7 +97,7 @@ function AddItemForm() {
         value={newProduct}
         label="New Item"
         variant="outlined"
-        onChange={(evt) => setNewProduct('Chicken')}
+        onChange={(evt) => setNewProduct(evt.target.value)}
       />
       <Button
         type="submit"
@@ -114,7 +114,7 @@ function AddItemForm() {
         value={newImg}
         label="Image URL"
         variant="outlined"
-        onChange={(evt) => setNewImg('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5cdc8468-88cf-4472-9d66-44c7d166408e/de7or4a-fc2cf4c9-2e9f-4f8c-80cc-e3f0002ee89c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVjZGM4NDY4LTg4Y2YtNDQ3Mi05ZDY2LTQ0YzdkMTY2NDA4ZVwvZGU3b3I0YS1mYzJjZjRjOS0yZTlmLTRmOGMtODBjYy1lM2YwMDAyZWU4OWMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.2-YG4Dm_GJFUjcyGp2p1WbisRiYiy_DoOaWgIh2LLag')}
+        onChange={(evt) => setNewImg(evt.target.value)}
         style={{ width: 280 }}
       />
     </section>
